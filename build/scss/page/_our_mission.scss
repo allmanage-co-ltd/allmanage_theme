@@ -1,0 +1,314 @@
+.our_mission {
+  .section-our_mission {
+    padding-right: 15px;
+    padding-left: 15px;
+    h3 {
+      &.title {
+        br {
+          display: none;
+        }
+        @media (max-width: 440px) {
+          line-height: 1.5;
+          br {
+            display: block;
+          }
+        }
+      }
+    }
+    .movie-content-wrap {
+      position: relative;
+
+      width: 100%;
+      margin-top: 70px;
+      margin-bottom: 70px;
+      padding-top: 56.25%;
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 100%;
+      }
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        height: 100%;
+
+        cursor: pointer;
+
+        object-fit: cover;
+      }
+    }
+
+    .sp-spacer {
+      display: none;
+
+      width: 1px;
+      height: 1px;
+    }
+    @media screen and (max-width: 768px) {
+      .sp-spacer {
+        display: block;
+      }
+    }
+  }
+  .section-vision {
+    padding-right: 15px;
+    padding-bottom: 60px;
+    padding-left: 15px;
+    .container {
+      display: flex;
+
+      @include tb {
+        flex-direction: column-reverse;
+      }
+      .text-box {
+        flex: 1;
+
+        min-width: 50%;
+
+        @include tb {
+          width: 100%;
+          min-width: 100%;
+        }
+        h4 {
+          font-size: 32px;
+          font-weight: 500;
+          line-height: 1;
+
+          position: relative;
+
+          display: flex;
+          align-items: flex-end;
+
+          margin-top: 25px;
+          margin-bottom: 20px;
+          padding-top: 0;
+          padding-bottom: 0;
+          padding-left: 20px;
+
+          border-left: 8px solid $blue;
+
+          @include oswald-font;
+
+          span {
+            font-size: 16px;
+            font-weight: bold;
+
+            padding-left: 20px;
+
+            color: $gold;
+
+            @include go-font;
+          }
+        }
+        h5 {
+          font-size: 20px;
+          font-weight: bold;
+
+          margin-bottom: 20px;
+
+          color: $gold;
+        }
+        hr {
+          width: 100%;
+          height: 1px;
+          margin-bottom: 20px;
+
+          border: none;
+          border-bottom: 1px solid $border;
+        }
+        p {
+          margin-bottom: 20px;
+        }
+      }
+      .img-box {
+        padding-left: 40px;
+
+        @include tb {
+          padding-left: 0;
+
+          text-align: center;
+        }
+      }
+    }
+  }
+  .section-values {
+    padding-right: 15px;
+    padding-left: 15px;
+    .container {
+      h3 {
+        &.title {
+          margin-bottom: 48px;
+        }
+      }
+      .value-group {
+        @include tb {
+          display: flex;
+          flex-wrap: wrap;
+        }
+        dl {
+          display: flex;
+
+          margin-bottom: 20px;
+
+          border: 1px solid $border;
+
+          @include tb {
+            flex-direction: column;
+
+            width: calc((100% - 15px) / 2);
+            &:nth-of-type(odd) {
+              margin-right: 15px;
+            }
+          }
+          @include sp {
+            width: 100%;
+            &:nth-of-type(odd) {
+              margin-right: 0;
+            }
+          }
+          dt {
+            padding: 20px;
+
+            background-color: $e;
+            img {
+              height: 100%;
+
+              @include tb {
+                width: 100%;
+              }
+              object-fit: cover;
+            }
+          }
+
+          dd {
+            flex: 1;
+
+            width: 100%;
+            padding-top: 30px;
+            padding-right: 90px;
+            padding-left: 55px;
+
+            @include pc {
+              padding-top: 20px;
+              padding-right: 20px;
+              padding-left: 20px;
+            }
+            @include tb {
+              padding-bottom: 20px;
+            }
+            h4 {
+              font-size: 26px;
+              font-weight: bold;
+
+              display: flex;
+              align-items: center;
+
+              min-height: 47px;
+              padding-top: 0;
+
+              border-left: 12px solid $blue;
+
+              @include pc {
+                font-size: 22px;
+
+                position: relative;
+
+                align-items: flex-start;
+              }
+              @include sp {
+                font-size: 18px;
+              }
+              .num {
+                display: flex;
+                flex-direction: column;
+
+                padding-right: 30px;
+                padding-left: 10px;
+
+                @include pc {
+                  padding-right: 10px;
+                  padding-left: 0;
+                }
+
+                .num-top {
+                  font-size: 12px;
+                  line-height: 1;
+
+                  position: static;
+
+                  padding-top: 0;
+                  padding-left: 5px;
+                  color: $blue;
+
+                  @include oswald-font;
+                }
+                .num-btm {
+                  font-size: 36px;
+                  font-weight: 500;
+                  line-height: 1;
+
+                  position: static;
+
+                  padding-top: 0;
+                  padding-left: 5px;
+                  color: $blue;
+
+                  @include oswald-font;
+                }
+              }
+              p {
+                @include pc {
+                  display: flex;
+                  flex-direction: column;
+                }
+                strong {
+                  text-align: left;
+                  font-size: 22px;
+                  @include sp {
+                    font-size: 20px;
+                  }
+                }
+                span {
+                  font-size: 16px;
+
+                  padding-top: 5px;
+                  padding-left: 15px;
+
+                  color: $gold;
+                  flex: 1;
+                  text-align: left;
+                  @include pc {
+                    font-size: 14px;
+                    padding-left: 5px;
+                    padding-top: 0;
+                  }
+                  @include sp {
+                    line-height: 1em;
+                    font-size: 14px;
+                    padding-left: 0;
+                    text-align: left;
+                  }
+                }
+              }
+            }
+            hr {
+              margin-top: 20px;
+              margin-bottom: 20px;
+
+              border: none;
+              border-bottom: 2px solid $blue;
+            }
+            p {
+              color: #1e3c4a;
+            }
+          }
+        }
+      }
+    }
+  }
+}

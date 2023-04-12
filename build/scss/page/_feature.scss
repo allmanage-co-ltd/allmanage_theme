@@ -1,0 +1,300 @@
+.feature {
+	.section-feature {
+		padding-right : 15px;
+		padding-left : 15px;
+
+		.great_value {
+			margin-bottom : 75px;
+			padding-top : 30px;
+			padding-bottom : 30px;
+
+			border : 4px solid $blue;
+			h3 {
+				font-size : 46px;
+				font-weight : 500;
+
+				margin-bottom : 30px;
+
+				text-align : center;
+
+				color : $blue;
+
+				@include oswald-font;
+				@media (max-width: 400px) {
+					font-size : 38px;
+				}
+			}
+			h4 {
+				font-size : 16px;
+				font-weight : bold;
+
+				display : flex;
+				align-items : center;
+				justify-content : center;
+
+				margin-bottom : 30px;
+				padding-top : 20px;
+				padding-bottom : 20px;
+
+				color : $white;
+				background-color : $blue;
+				@media (max-width: 400px) {
+					font-size : 12px;
+				}
+			}
+			h5 {
+				font-size : 20px;
+				font-weight : bold;
+				line-height : 1.8;
+
+				margin-bottom : 20px;
+
+				text-align : center;
+
+				color : $blue;
+
+				@include sp {
+					font-size : 16px;
+				}
+				@media (max-width: 400px) {
+					font-size : 12px;
+				}
+			}
+			p {
+				text-align : center;
+
+				@include sp {
+					font-size : 12px;
+				}
+			}
+		}
+		h4 {
+			&.title {
+				margin-top : 45px;
+				margin-bottom : 40px;
+			}
+		}
+		h5 {
+			font-size : 20px;
+			font-weight : bold;
+
+			margin-bottom : 45px;
+
+			text-align : center;
+
+			color : $blue;
+
+			@include sp {
+				font-size : 16px;
+			}
+		}
+		p {
+			@include sp {
+				font-size : 12px;
+			}
+			&.title {
+				font-size : 24px;
+				font-weight : bold;
+
+				margin-top : 60px;
+				margin-bottom : 100px;
+
+				text-align : center;
+
+				color : $blue;
+
+				@include sp {
+					font-size : 16px;
+				}
+			}
+		}
+		.mb-35 {
+			margin-bottom : 35px;
+
+			@include sp {
+				font-size : 12px;
+
+				margin-bottom : 15px;
+			}
+		}
+		dl {
+			display : flex;
+
+			@include tb {
+				flex-direction : column-reverse;
+			}
+			dt {
+				font-size : 18px;
+				font-weight : bold;
+
+				display : flex;
+				flex-direction : column;
+				justify-content : center;
+
+				width : 50%;
+				padding-right : 60px;
+				padding-left : 60px;
+
+				background-color : $blue-bg;
+
+				@include tb {
+					align-items : center;
+					justify-content : center;
+
+					width : 100%;
+					padding-right : 15px;
+					padding-left : 15px;
+				}
+				@media (max-width: 440px) {
+					font-size : 14px;
+
+					padding : 10px;
+				}
+				strong {
+					font-size : 20px;
+
+					display : block;
+
+					margin-top : 15px;
+
+					color : $blue;
+					@media (max-width: 440px) {
+						font-size : 16px;
+					}
+				}
+			}
+			dd {
+				overflow : hidden;
+
+				width : 50%;
+
+				@include tb {
+					align-items : center;
+					justify-content : center;
+
+					width : 100%;
+
+					text-align : center;
+				}
+			}
+		}
+		.image-box {
+			display : flex;
+			flex-wrap : wrap;
+
+			margin-bottom : 75px;
+			dl {
+				display : flex;
+				flex-direction : column;
+
+				width : calc((100% - 60px) / 4);
+				margin-right : 20px;
+				margin-bottom : 0;
+
+				border : 1px solid $border-purple;
+
+				@include tb {
+					width : calc((100% - 20px) / 2);
+					margin-bottom : 20px;
+
+					&:nth-of-type(2) {
+						margin-right : 0;
+					}
+				}
+				@media (max-width: 440px) {
+					width : 100%;
+					margin-right : 0;
+				}
+				&:nth-of-type(4) {
+					margin-right : 0;
+				}
+				dt {
+					width : 100%;
+					padding-top : 40px;
+
+					text-align : center;
+
+					background-color : transparent;
+
+					@include tb {
+						padding-top : 15px;
+					}
+				}
+				dd {
+					width : 100%;
+					padding : 15px;
+					padding-top : 0;
+					h4 {
+						font-size : 20px;
+						font-weight : bold;
+
+						margin-bottom : 25px;
+						padding-top : 0;
+
+						text-align : center;
+
+						color : $blue;
+
+						@include sp {
+							font-size : 16px;
+						}
+					}
+					p {
+						letter-spacing : 0.2px;
+
+						@include sp {
+							font-size : 12px;
+						}
+					}
+				}
+			}
+		}
+		.match-box {
+			display : flex;
+			flex-wrap : wrap;
+			dl {
+				display : flex;
+				flex-direction : column;
+
+				width : calc((100% - 20px) / 2);
+				margin-bottom : 20px;
+
+				border : 1px solid $border-purple;
+				&:nth-of-type(odd) {
+					margin-right : 20px;
+					@media (max-width: 440px) {
+						margin-right : 0;
+					}
+				}
+				@media (max-width: 440px) {
+					width : 100%;
+					margin-right : 0;
+				}
+				dt {
+					line-height : 1;
+
+					width : 100%;
+					padding-top : 20px;
+					padding-bottom : 20px;
+
+					text-align : center;
+
+					color : $blue;
+					border-bottom : 1px solid $border-purple;
+
+					@include sp {
+						font-size : 16px;
+					}
+				}
+				dd {
+					width : 100%;
+					padding : 15px;
+
+					@include sp {
+						font-size : 12px;
+					}
+				}
+			}
+		}
+	}
+}

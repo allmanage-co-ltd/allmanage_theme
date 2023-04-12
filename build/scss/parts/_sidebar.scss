@@ -1,0 +1,124 @@
+aside {
+	section {
+		@include tb {
+			width : 50%;
+			padding-right : 15px;
+			padding-left : 15px;
+		}
+		@include sp {
+			padding-right : 5px;
+			padding-left : 5px;
+		}
+		h3 {
+			font-size : 26px;
+			font-weight : 500;
+
+			margin-bottom : 15px;
+
+			text-align : center;
+			letter-spacing : 1px;
+
+			color : $blue;
+
+			@include oswald-font;
+		}
+		h4 {
+			font-size : 16px;
+			font-weight : bold;
+
+			position : relative;
+
+			padding-top : 15px;
+			padding-bottom : 15px;
+
+			pointer-events : none;
+
+			color : $blue;
+			border-top : 2px solid $blue;
+			border-bottom : 2px solid $blue;
+
+			@include tb {
+				margin-bottom : 15px;
+
+				pointer-events : all;
+			}
+			i {
+				position : absolute;
+				top : 50%;
+				right : 5px;
+
+				display : none;
+
+				padding-right : 0;
+
+				transition : 0.3s;
+				transform : translateY(-50%) rotate(0deg);
+
+				@include tb {
+					display : block;
+				}
+			}
+
+			&.open {
+				i {
+					transform : translateY(-50%) rotate(180deg);
+				}
+			}
+		}
+		ul {
+			display : block;
+			flex-direction : column;
+
+			margin-right : 0;
+			margin-bottom : 40px;
+
+			@include tb {
+				display : none;
+			}
+			li {
+				width : 100%;
+
+				border-bottom : 1px solid $border;
+				a {
+					font-size : 14px;
+					font-weight : 500;
+
+					display : flex;
+					align-items : center;
+					justify-content : flex-start;
+
+					padding-top : 12px;
+					padding-bottom : 12px;
+					padding-left : 0;
+
+					color : $black;
+
+					@include go-font;
+					&::before {
+						font-size : 14px;
+						font-weight : bold;
+
+						padding-right : 20px;
+
+						content : "ー";
+
+						color : $blue;
+					}
+				}
+			}
+		}
+	}
+}
+.tgl-tb {
+	section {
+		h4 {
+			i {
+				display : none;
+
+				@include tb {
+					display : block;
+				}
+			}
+		}
+	}
+}
