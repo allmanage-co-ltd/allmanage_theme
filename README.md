@@ -1,2 +1,1 @@
-"# csv-import" 
-"# csv-import" 
+# Wordpress用のスタートテーマです。
