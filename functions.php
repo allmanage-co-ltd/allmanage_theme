@@ -1,9 +1,10 @@
 <?php
+
 /******************************************************
-*
-* インクルード
-*
-*******************************************************/
+ *
+ * インクルード
+ *
+ *******************************************************/
 // 独自関数の設定
 require_once locate_template('inc/function.php');
 // スタイル・スクリプトの設定
@@ -21,4 +22,6 @@ require_once locate_template('inc/seo.php');
 // コンバージョンの設定
 require_once locate_template('inc/conversion.php');
 // CSVフィールドの設定
-require_once locate_template('inc/csv-field.php');
+// require_once locate_template('inc/csv-field.php');
+// タスク管理の設定
+require_once locate_template('inc/tasks.php');
