@@ -10,7 +10,7 @@
 - Live Sass Compilerを使用する際のコンパイルルール
 ### build
 - Gulpを使用する場合のみ使用（既存public内のソースとの差分に注意）
-### fanctions
+### functions
 - テーマの独自関数の定義ディレクトリ、ルートのfanctions.phpでincludeする
 ### public
 - webサーバから直接アクセスされる静的ファイル（画像・js・コンパイル後のcss等）
