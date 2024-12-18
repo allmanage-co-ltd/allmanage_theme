@@ -72,114 +72,7 @@ function save_app_cat($post_id)
 		}
 	}
 }
-//add_action( 'save_post_app', 'save_app_cat', 10, 3 );
 
-
-// カスタム投稿 求人情報
-// add_action('init', 'codex_post_init');
-// function codex_post_init()
-// {
-
-// 	// 	// 導入事例
-// 	$labels = array(
-// 		'name' => '導入事例',
-// 		'singular_name' => '導入事例',
-// 		'menu_name' => '導入事例',
-// 		'add_new' => '新規追加',
-// 		'add_new_item' => '新規追加',
-// 		'edit_item' => '導入事例を編集',
-// 		'new_item' => '導入事例',
-// 		'view_item' => '導入事例を見る',
-// 		'all_items' =>  '導入事例一覧',
-// 		'search_items' => '導入事例を探す',
-// 		'not_found' => '導入事例はありません',
-// 		'not_found_in_trash' => '導入事例はありません',
-// 		'parent_item_colon' => "",
-// 	);
-// 	$args = array(
-// 		'labels' => $labels,
-// 		'public' => true,
-// 		'has_archive' => true,
-// 		'menu_icon' => 'dashicons-hammer',
-// 		'menu_position' => 4,
-// 		'taxonomies' => array(),
-// 		'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'trackbacks', 'custom-fields', 'comments', 'revisions', 'page-attributes', 'post-formats'),
-// 		'supports' => array('title', 'editor', 'thumbnail')
-// 	);
-
-// 	register_post_type( 'case', $args );
-// 	register_taxonomy( 'industry', 'case', array(
-// 			'label' => '業界',
-// 			'hierarchical' => true,
-// 			'sort' => true,
-// 			'public' => true,
-// 			'show_admin_column' => true,
-// 		)
-// 	);
-// 	register_taxonomy( 'process', 'case', array(
-// 			'label' => '工程',
-// 			'hierarchical' => true,
-// 			'sort' => true,
-// 			'public' => true,
-// 			'show_admin_column' => true,
-// )
-// );
-
-// コラム
-// $labels = array(
-// 	'name' => '投稿(英語)',
-// 	'singular_name' => '投稿(英語)',
-// 	'menu_name' => '投稿(英語)',
-// 	'add_new' => '新規追加',
-// 	'add_new_item' => '新規追加',
-// 	'edit_item' => '投稿(英語)を編集',
-// 	'new_item' => '投稿(英語)',
-// 	'view_item' => '投稿(英語)を見る',
-// 	'all_items' =>  '投稿(英語)一覧',
-// 	'search_items' => '投稿(英語)を探す',
-// 	'not_found' => '投稿(英語)はありません',
-// 	'not_found_in_trash' => '投稿(英語)はありません',
-// 	'parent_item_colon' => "",
-// );
-// $args = array(
-// 	'labels' => $labels,
-// 	'public' => true,
-// 	'has_archive' => true,
-// 	'menu_icon' => 'dashicons-welcome-write-blog',
-// 	'menu_position' => 4,
-// 	'taxonomies'=>array('column-tag'),
-// 	//'supports' => array( 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats' ),
-// 	'supports' => array( 'title','editor','thumbnail'),
-// 	'show_in_rest' => true,
-// );
-// register_post_type( 'column', $args );
-// register_taxonomy( 'column-tag', 'column', array(
-// 		'label' => 'カテゴリー',
-// 		'hierarchical' => true,
-// 		'sort' => true,
-// 		'public' => true,
-// 		'show_admin_column' => true,
-// 		'show_in_rest' => true,
-// 	)
-// );
-
-// function change_post_object_label() {
-//   $name = '投稿(日本語)';
-//   global $wp_post_types;
-//   $labels = &$wp_post_types['post']->labels;
-//   $labels->name = $name;
-//   $labels->singular_name = $name;
-//   $labels->add_new = '新規追加';
-//   $labels->add_new_item = $name.'の新規追加';
-//   $labels->edit_item = $name.'の編集';
-//   $labels->new_item = '新規'.$name;
-//   $labels->all_items = $name . '一覧';
-//   $menu_icon = &$wp_post_types['post']->menu_icon;
-//   $menu_icon = 'dashicons-welcome-write-blog';
-// }
-// add_action('init', 'change_post_object_label');
-
-// }
 
 // カスタムフィールドの表示テンプレート指定
 function my_custom_fields($post, $metabox)
@@ -295,75 +188,30 @@ function custom_rewrite_rules_array($rules)
 add_action('init', 'create_post_type');
 function create_post_type()
 {
-	register_post_type('news-list', [ // 投稿タイプ名の定義
+	register_post_type('news', [ // 投稿タイプ名の定義
 		'labels' => [
 			'name'          => 'NEWS', // 管理画面上で表示する投稿タイプ名
-			'singular_name' => 'news-list',    // カスタム投稿の識別名
-		
+			'singular_name' => 'news',    // カスタム投稿の識別名
+
 		],
 		'public'        => true,  // 投稿タイプをpublicにするか
 		'has_archive'   => true, // アーカイブ機能ON/OFF
 		'menu_position' => 5,     // 管理画面上での配置場所
 		'show_in_rest'  => false,  // 5系から出てきた新エディタ「Gutenberg」を有効にする
-		'supports' => array('title', 'editor', 'thumbnail') ,
-	]);
-	register_post_type('store-list', [ // 投稿タイプ名の定義
-		'labels' => [
-			'name'          => '店舗設定', // 管理画面上で表示する投稿タイプ名
-			'singular_name' => 'store',    // カスタム投稿の識別名
-			'add_new'       => '新店追加',
-			'add_new_item'  => '新しい店舗を設定',
-		],
-		'public'        => true,  // 投稿タイプをpublicにするか
-		'has_archive'   => true, // アーカイブ機能ON/OFF
-		'menu_position' => 5,     // 管理画面上での配置場所
-		'show_in_rest'  => false,  // 5系から出てきた新エディタ「Gutenberg」を有効にする
-		'supports' => array('title', 'editor', 'thumbnail') ,
+		'supports' => array('title', 'editor', 'thumbnail'),
 	]);
 }
 function add_taxonomy()
 {
 	register_taxonomy(
 		'news-term',
-		'news-list',
+		'news',
 		array(
 			'label' => 'NEWSカテゴリー',
 			'singular_label' => 'NEWSカテゴリー',
 			'labels' => array(
 				'all_items' => 'NEWSカテゴリー一覧',
 				'add_new_item' => 'NEWSカテゴリーを追加'
-			),
-			'public' => true,
-			'show_ui' => true,
-			'show_in_nav_menus' => true,
-			'hierarchical' => true
-		)
-	);
-	register_taxonomy(
-		'store-term',
-		'news-list',
-		array(
-			'label' => '店舗カテゴリー',
-			'singular_label' => '店舗カテゴリー',
-			'labels' => array(
-				'all_items' => '店舗カテゴリー一覧',
-				'add_new_item' => '店舗カテゴリーを追加'
-			),
-			'public' => true,
-			'show_ui' => true,
-			'show_in_nav_menus' => true,
-			'hierarchical' => true
-		)
-	);
-	register_taxonomy(
-		'pref-term',
-		'store-list',
-		array(
-			'label' => '地域カテゴリー',
-			'singular_label' => '地域カテゴリー',
-			'labels' => array(
-				'all_items' => '地域カテゴリー一覧',
-				'add_new_item' => '地域カテゴリーを追加'
 			),
 			'public' => true,
 			'show_ui' => true,
