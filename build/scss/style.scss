@@ -1,11 +1,12 @@
 @import "reset";
 @import "font";
 @import "variables";
-@import "global";
 @import "base";
 
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
 @import url("https://use.fontawesome.com/releases/v5.6.1/css/all.css");
 
-@import "page/**";
-@import "parts/**";
+@import "page/contact";
+@import "page/section";
+@import "parts/footer";
+@import "parts/header";

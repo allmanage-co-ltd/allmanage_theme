@@ -2,7 +2,7 @@
     "liveSassCompile.settings.formats": [{
         "format": "expanded",
         "extensionName": ".css",
-        "savePath": "/public/css"
+        "savePath": "/src/css"
     }]
     "liveSassCompile.settings.includeItems": [
         "/build/scss/style.scss",
