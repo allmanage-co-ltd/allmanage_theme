@@ -1,0 +1,14 @@
+{
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.0",
+    "phpstan/phpstan": "^1.0",
+    "szepeviktor/phpstan-wordpress": "^1.0",
+    "php-stubs/wordpress-stubs": "^6.0",
+    "tareq1988/wp-php-cs-fixer": "^1.0"
+  },
+  "scripts": {
+    "cs": "php-cs-fixer fix --dry-run --diff",
+    "cs:fix": "php-cs-fixer fix",
+    "analyse": "phpstan analyse"
+  }
+}

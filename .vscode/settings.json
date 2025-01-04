@@ -1,10 +1,19 @@
 {
-    "liveSassCompile.settings.formats": [{
-        "format": "expanded",
-        "extensionName": ".css",
-        "savePath": "/src/css"
-    }]
-    "liveSassCompile.settings.includeItems": [
-        "/build/scss/style.scss",
-    ]
+  "liveSassCompile.settings.formats": [
+    {
+      "format": "expanded",
+      "extensionName": ".css",
+      "savePath": "/style/css"
+    }
+  ],
+  "liveSassCompile.settings.includeItems": [
+    "/style/scss/style.scss"
+  ],
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "[php]": {
+    "editor.tabSize": 2
+  },
+  "editor.formatOnSave": true,
 }
