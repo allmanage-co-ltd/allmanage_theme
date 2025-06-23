@@ -1,0 +1,141 @@
+footer {
+  padding-top: 100px;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  text-align: center;
+
+  background-color: $black;
+
+  @include tb {
+    padding-top: 30px;
+  }
+  @media (max-width: 550px) {
+    padding-bottom: 80px;
+  }
+  .contents {
+    display: flex;
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @include tb {
+      flex-direction: column-reverse;
+      flex-wrap: wrap;
+    }
+  }
+  .footer-logo {
+    width: 100%;
+    max-width: 440px;
+    margin-top: 20px;
+
+    text-align: left;
+
+    @include pc {
+      width: 40%;
+      max-width: 100%;
+    }
+    @include tb {
+      margin-right: auto;
+      margin-left: auto;
+
+      text-align: center;
+    }
+    @include sp {
+      width: 100%;
+    }
+    p {
+      font-size: 14px;
+
+      margin-bottom: 80px;
+      padding-top: 40px;
+
+      text-align: left;
+
+      color: $white;
+
+      @include tb {
+        margin-bottom: 30px;
+
+        text-align: center;
+      }
+      a {
+        font-size: 14px;
+
+        display: block;
+
+        color: $white;
+
+        &.telto {
+          pointer-events: none;
+
+          @include sp {
+            pointer-events: all;
+          }
+        }
+      }
+    }
+  }
+  .footer-link {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+
+    @include tb {
+      justify-content: center;
+
+      margin-bottom: 30px;
+    }
+    @include sp {
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+    ul {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+
+      padding-left: 20px;
+
+      @include tb {
+        margin-right: 0;
+      }
+      @include sp {
+        width: 100%;
+        max-width: 280px;
+        padding-right: 20px;
+      }
+      li {
+        margin-bottom: 5px;
+
+        text-align: left;
+        a {
+          font-weight: normal;
+
+          padding: 0;
+          i {
+            padding-right: 15px;
+
+            color: $gold;
+          }
+        }
+        ul {
+          margin-right: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  address {
+    font-size: 12px;
+    font-weight: 500;
+
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 25px;
+
+    color: $white;
+  }
+}

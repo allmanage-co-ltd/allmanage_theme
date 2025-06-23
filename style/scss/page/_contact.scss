@@ -1,0 +1,23 @@
+.contact {
+  .section-contact {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  form {
+    padding-bottom: 60px;
+    dl {
+      dd {
+        .textarea-text-contact {
+          width: 100%;
+          max-width: 100%;
+        }
+        textarea {
+          width: 100%;
+          max-width: 100%;
+          height: 100%;
+          max-height: 237px;
+        }
+      }
+    }
+  }
+}
