@@ -41,24 +41,32 @@
 
 ## コード品質管理
 
+### Rector
+1. Rector
+  PHPのバージョンアップに伴うソースの修正対応をある程度自動化できます。
+  [参考](https://zenn.dev/m01tyan/articles/3fcf6b59fba070)
+
+```sh
+composer rector     # 自動修正点の確認のみ
+composer rector:fix # 自動修正を実行
+```
+
 ### Formatter
 1. 独自ルール（`./.vscode/settings.json`で2スぺインデントを強制）
-  - vscodeでの設定とPHP CS Fixerフォーマットが若干かみ合わずに毎回微修正されます。。。。
+  vscodeでの設定とPHP CS Fixerフォーマットが若干かみ合わずに毎回微修正されます。。。。
 2. PHP CS Fixer
-```sh
-# 参考サイト（随時追加してください。）
-# https://qiita.com/suin/items/4242aec018d086312fe7
+  [参考](https://qiita.com/suin/items/4242aec018d086312fe7)
 
+```sh
 composer cs     # フォーマットチェックのみ
 composer cs:fix # フォーマットを自動修正する
 ```
 
 ### Linter
 1. PHPStan
-```sh
-# 参考サイト（随時追加してください。）
-# https://www.divx.co.jp/media/172
+  [参考](https://www.divx.co.jp/media/172)
 
+```sh
 composer analyse
 ```
 

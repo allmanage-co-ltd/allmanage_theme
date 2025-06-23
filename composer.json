@@ -4,11 +4,14 @@
     "phpstan/phpstan": "^1.0",
     "szepeviktor/phpstan-wordpress": "^1.0",
     "php-stubs/wordpress-stubs": "^6.0",
-    "tareq1988/wp-php-cs-fixer": "^1.0"
+    "tareq1988/wp-php-cs-fixer": "^1.0",
+    "rector/rector": "^1.2"
   },
   "scripts": {
-    "cs": "php-cs-fixer fix --dry-run --diff",
-    "cs:fix": "php-cs-fixer fix",
-    "analyse": "phpstan analyse"
+    "cs": "vendor/bin/php-cs-fixer fix --dry-run --diff",
+    "cs:fix": "vendor/bin/php-cs-fixer fix",
+    "analyse": "vendor/bin/phpstan analyse",
+    "rector": "vendor/bin/rector process --dry-run",
+    "rector:fix": "vendor/bin/rector process"
   }
 }
