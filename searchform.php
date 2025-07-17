@@ -1,4 +1,4 @@
-<form method="get" id="searchform" action="<?php echo home(); ?>">
+<form method="get" id="searchform" action="<?= home(); ?>">
   <i class="fas fa-search"></i>
   <input type="text" value="" name="s" class="s" id="s" placeholder="サイト内投稿記事検索" />
   <input type="hidden" name="post_type" value="news-list">

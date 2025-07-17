@@ -1,19 +1,18 @@
 <?php
+$post_type = get_query_var('post_type');
 
-declare(strict_types=1);
+$header = theme_dir() . 'header.php';
+$footer = theme_dir() . 'footer.php';
+$file   = theme_dir() . "view/archive/{$post_type}.php";
 
-get_header();
-
-$folder = 'view/single/';
-
-$slug = get_post_type();
-
-$file = $folder.$slug;
-
-if ('' === locate_template($file.'.php')) {
-  $file = $folder.'default';
+if (
+  !post_type_exists($post_type) ||
+  !is_post_type_archive($post_type) ||
+  !file_exists($file)
+) {
+  to_404notfound();
 }
 
-get_template_part($file);
-
-get_footer();
+foreach ([$header, $file, $footer] as $f) {
+  include_once $f;
+}

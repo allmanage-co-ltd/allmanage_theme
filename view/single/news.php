@@ -1,19 +1,23 @@
- <section class="section-breadcrumb">
-   <div class="container">
-     <?php breadcrumb(); ?>
-   </div>
- </section>
- <main>
-   <?php
-    if (have_posts()) {
-      while (have_posts()) {
-        the_post();
-        ?>
-       <section class="section-news-list">
-         <div class="container">
-           <?php the_content(); ?>
-         </div>
-       </section>
-   <?php }
-      }
-     ?>
+<?php
+get_header();
+
+?>
+
+<section class="section-breadcrumb">
+  <div class="container">
+    <?php breadcrumb(); ?>
+  </div>
+</section>
+
+<main>
+  <section class="section-contact">
+    <div class="container">
+
+    </div>
+  </section>
+</main>
+
+<?php
+get_footer();
+
+?>

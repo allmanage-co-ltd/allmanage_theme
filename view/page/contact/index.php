@@ -13,6 +13,8 @@ get_header();
   <section class="section-contact">
     <div class="container">
 
+      <?= do_shortcode(''); ?>
+
     </div>
   </section>
 </main>

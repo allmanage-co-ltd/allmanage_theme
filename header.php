@@ -10,27 +10,14 @@
 
 <body <?php body_class(); ?>>
 
-
-
   <header class="">
-    <h1></h1>
-    <nav></nav>
-    <form method="get" id="searchform" action="<?php echo home(); ?>">
-      <i class="fas fa-search"></i>
-      <input type="text" value="" name="s" class="s" placeholder="サイト内投稿記事検索" />
-      <input type="hidden" name="post_type" value="news-list">
-      <button type="submit" class="s-btn-area">
-        <div class="s-btn">検索</div>
-      </button>
-    </form>
+    <h1>
 
-    <div class="meilto">
-      <a href="<?php echo home(); ?>contact"><i class="fas fa-envelope"></i>お問い合わせ</a>
-    </div>
+    </h1>
 
-    <div class="recruitto">
-      <a href="#store">RECRUIT<span>ご応募はこちら</span></a>
-    </div>
+    <nav>
+
+    </nav>
 
     <nav class="drawer">
       <input id="hamburger" class="hamburger" type="checkbox" />
