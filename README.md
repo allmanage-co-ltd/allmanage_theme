@@ -3,13 +3,23 @@
 色々なサイトで作成した機能をひとまとめにしたテーマです。
 不要なファイルや不要な記述を整理していきたいと思います。
 
----
+## 更新履歴
+
+20250717 諸々の整理 谷口・小山
+
+## 必須ルール
+
+1. 案件ごとに新しく git から clone もしくは zip を落として使用してください。
+2. 明確な命名規則やコーディングルールはありませんが、よしなに合わせてください。
+3. 不要なソースコードは含めず必要に応じてカスタマイズしてください。
+4. ディレクトリ構造の変更は行わないようにお願いいたします。
+5. Composer 等は無視で構いませんが積極的に使用してください。
 
 ## セットアップ
 
 - ### Conposer
 
-  phpのパッケージマネージャ`composer`のインストールが必要です。
+  php のパッケージマネージャ`composer`のインストールが必要です。
 
   未インストールの場合は下記を参考にインストールしてください。
 
@@ -20,7 +30,9 @@
   # プロジェクトの依存関係をインストールします。
   composer install
   ```
-  `conposer`にはnpm同様のコマンド登録機能があります。
+
+  `conposer`には npm 同様のコマンド登録機能があります。
+
   ```json
   {
     "scripts": {
@@ -33,7 +45,7 @@
 
 - ### Sass
 
-  基本はvscodeプラグインの`Live Sass Compailer`を使用します。
+  基本は vscode プラグインの`Live Sass Compailer`を使用します。
 
   コンパイルルール（入出力先）などは`./.vscode/settings.json`に記載してあるのでそのままコンパイルしていただければ問題ありません。
 
@@ -42,9 +54,10 @@
 ## コード品質管理
 
 ### Rector
+
 1. Rector
-  PHPのバージョンアップに伴うソースの修正対応をある程度自動化できます。
-  [参考](https://zenn.dev/m01tyan/articles/3fcf6b59fba070)
+   PHP のバージョンアップに伴うソースの修正対応をある程度自動化できます。
+   [参考](https://zenn.dev/m01tyan/articles/3fcf6b59fba070)
 
 ```sh
 composer rector     # 自動修正点の確認のみ
@@ -52,10 +65,11 @@ composer rector:fix # 自動修正を実行
 ```
 
 ### Formatter
-1. 独自ルール（`./.vscode/settings.json`で2スぺインデントを強制）
-  vscodeでの設定とPHP CS Fixerフォーマットが若干かみ合わずに毎回微修正されます。。。。
+
+1. 独自ルール（`./.vscode/settings.json`で 2 スぺインデントを強制）
+   vscode での設定と PHP CS Fixer フォーマットが若干かみ合わずに毎回微修正されます。。。。
 2. PHP CS Fixer
-  [参考](https://qiita.com/suin/items/4242aec018d086312fe7)
+   [参考](https://qiita.com/suin/items/4242aec018d086312fe7)
 
 ```sh
 composer cs     # フォーマットチェックのみ
@@ -63,8 +77,9 @@ composer cs:fix # フォーマットを自動修正する
 ```
 
 ### Linter
+
 1. PHPStan
-  [参考](https://www.divx.co.jp/media/172)
+   [参考](https://www.divx.co.jp/media/172)
 
 ```sh
 composer analyse
@@ -75,16 +90,18 @@ composer analyse
 ## CI / CD
 
 - CI（継続的インテグレーション）
-  - Trigger: stagingブランチへのプルリクエスト
-  - Action: PHP CS Fixer, PHPStanの実行及びレポート作成
+
+  - Trigger: staging ブランチへのプルリクエスト
+  - Action: PHP CS Fixer, PHPStan の実行及びレポート作成
 
 - CD（継続的デプロイメント）
-  - Trigger: stagingブランチへのプルリクエスト
-  - Action: 本番環境へSSH接続し`git pull`を実行
+  - Trigger: staging ブランチへのプルリクエスト
+  - Action: 本番環境へ SSH 接続し`git pull`を実行
 
 ---
 
 ## ディレクトリ構成
+
 ```
 .
 ├── .php-cs-fixer.dist.php   # php-cs-fixerの設定管理ファイル
@@ -93,9 +110,7 @@ composer analyse
 ├── .vscode/                 # VSCode設定
 │   └── settings.json        # インデント等の共通ルール
 │
-├── admin/                   # 管理画面用ディレクトリ
-│
-├── functions/               # テーマの独自関数
+├── func/                    # テーマの独自関数
 │   └── ...                  # functions.phpでincludeされる関数ファイル群
 │
 ├── img/                     # 画像ファイル管理
