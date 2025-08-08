@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * フロント画面　css
+ * フロント画面 css
  */
 function my_front_style(): void
 {
@@ -22,7 +22,7 @@ function my_front_style(): void
 
 
 /**
- * フロント画面　js
+ * フロント画面 js
  */
 function my_front_script(): void
 {
@@ -66,7 +66,7 @@ add_action('after_setup_theme', 'add_front_theme');
 
 
 /**
- * 管理画面　css
+ * 管理画面 css
  */
 function my_admin_style(): void
 {
@@ -76,7 +76,7 @@ function my_admin_style(): void
 
 
 /**
- * 管理画面　js
+ * 管理画面 js
  */
 function my_admin_script(): void
 {

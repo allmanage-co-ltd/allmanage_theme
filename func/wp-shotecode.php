@@ -1,10 +1,12 @@
 <?php
 
-add_shortcode('', '');
-add_shortcode('home', 'shortcode_home');
+// add_shortcode('', '');
 
-
+/**
+ * トップのurl
+ */
 function shortcode_home()
 {
   return home_url('/');
 }
+add_shortcode('home', 'shortcode_home');

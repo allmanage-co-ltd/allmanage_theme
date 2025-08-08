@@ -6,9 +6,9 @@
       <a href="<?= home(); ?>"><img src="<?= img_dir(); ?>common/logo-w.png" class="img-fluid" alt=""></a>
     </div>
 
-    <nav class="footer-link">
-
-    </nav>
+    <?php
+    get_template_part('view/parts/footer-navi');
+    ?>
   </div>
 
 </footer>

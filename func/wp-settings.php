@@ -152,3 +152,49 @@ function custom_class_names($classes)
   return $classes;
 }
 add_filter('body_class', 'custom_class_names');
+
+
+/**
+ * メタタグの出力
+ */
+function set_head_meta($gtags = [])
+{
+  $site_title = get_bloginfo('name');
+  $site_desc  = get_bloginfo('description');
+  $page_title = is_front_page() || is_home() ? $site_title : get_the_title() . " | " . $site_title;
+  $request_uri = home_url(add_query_arg([]));
+  $thumbnail   = has_post_thumbnail() ? get_the_post_thumbnail_url(null, 'full') : get_template_directory_uri() . '/img/common/ogp.jpg';
+
+  $gt = '';
+  if (!empty($gtags)) {
+    foreach ($gtags as $gtag) {
+      $gt .= <<<HTML
+      <script async="" src="https://www.googletagmanager.com/gtag/js?id={$gtag}"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', "{$gtag}");
+      </script>
+      HTML;
+    }
+  }
+
+  return <<<HTML
+    <title>{$page_title}</title>
+    <meta name="description" content="{$site_desc}">
+    <meta name="keywords" content="">
+    <link rel="canonical" href="{$request_uri}">
+
+    <meta property="og:title" content="{$page_title}">
+    <meta property="og:description" content="{$site_desc}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{$request_uri}">
+    <meta property="og:site_name" content="{$site_title}">
+    <meta property="og:image" content="{$thumbnail}">
+
+    {$gt}
+  HTML;
+}

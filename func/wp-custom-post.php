@@ -28,7 +28,7 @@ add_action('init', 'create_post_type');
 function add_taxonomy(): void
 {
   register_taxonomy(
-    'news-term',
+    'news-cat',
     'news',
     [
       'label' => 'NEWSカテゴリー',
