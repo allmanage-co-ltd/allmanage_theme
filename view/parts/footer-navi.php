@@ -2,7 +2,7 @@
   <ul class="">
 
     <li class="">
-      <a href="<?= $p['top'] ?>">
+      <a href="<?= get_url('top') ?>">
         <!--  -->
       </a>
     </li>

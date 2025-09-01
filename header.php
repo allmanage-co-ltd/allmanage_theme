@@ -4,6 +4,8 @@ $permalink_file = get_template_directory() . '/config/permalink.php';
 if (file_exists($permalink_file)) {
   include_once $permalink_file;
 }
+
+$bodyClass  = esc_attr(implode(' ', get_body_class()));
 ?>
 
 <!DOCTYPE html>
@@ -14,14 +16,14 @@ if (file_exists($permalink_file)) {
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="format-detection" content="telephone=no">
   <?php
-  echo set_head_meta([
-    // 'GA4-XXXXXXXXX-1',
-  ]);
+  get_site_title_desc();
+  get_gtags(['']);
+  // get_jsonld();
   wp_head();
   ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body class="<?= $bodyClass ?>">
 
   <header class="header" id="header">
     <div class="header-inner">

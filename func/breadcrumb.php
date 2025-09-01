@@ -33,7 +33,7 @@ function breadcrumb(): void
 
   switch (true) {
     case is_search():
-      $items[] = '<li>「' . get_search_query() . '」で検索した結果</li>';
+      $items[] = '<li>「' . get_search_query() . '」の検索結果</li>';
       break;
 
     case is_tag():
@@ -68,7 +68,7 @@ function breadcrumb(): void
       break;
 
     case is_author():
-      $items[] = '<li>投稿者 : ' . get_the_author_meta('display_name', get_query_var('author')) . '</li>';
+      $items[] = '<li>' . get_the_author_meta('display_name', get_query_var('author')) . '</li>';
       break;
 
     case is_page():
