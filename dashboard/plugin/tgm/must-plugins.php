@@ -20,6 +20,12 @@ $my_must_plugins = array(
       'required' => true,
 		),
 		array(
+      'name'     => 'SiteGuard WP Plugin',
+      'slug'     => 'siteguard',
+      // 'force_activation'   => true,
+      'required' => true,
+		),
+		array(
       'name'     => 'Website LLMs.txt',
       'slug'     => 'website-llms-txt',
       // 'force_activation'   => true,
