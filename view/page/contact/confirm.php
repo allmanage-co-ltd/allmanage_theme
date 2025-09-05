@@ -1,22 +1,34 @@
 <?php
+/*
+Page Title: 確認
+Page Slug: confirm
+Page Parent: contact
+*/
 get_header();
 
 ?>
 
-<section class="section-breadcrumb">
-  <div class="container">
+<main class="">
+
+  <div class="p-kv_under">
+    <div class="p-kv_under__inner">
+      <div class="c-inner">
+        <div class="p-kv_under__ttl">
+          <div class="en">Title</div>
+          <div class="jp">タイトル</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="c-inner">
     <?php breadcrumb(); ?>
   </div>
-</section>
 
-<main>
-  <section class="section-contact">
-    <div class="container">
+  <section>
 
-      <?= do_shortcode(''); ?>
-
-    </div>
   </section>
+
 </main>
 
 <?php
