@@ -1,19 +1,73 @@
-# Wordpress 用のスタートテーマです。
+# オルマネテンプレートテーマ
 
 色々なサイトで作成した機能をひとまとめにしたテーマです。
 不要なファイルや不要な記述を整理していきたいと思います。
 
-## 更新履歴
-
-20250717 諸々の整理 谷口・小山
-
 ## 必須ルール
 
-1. 案件ごとに新しく git から clone もしくは zip を落として使用してください。
+1. **案件ごとに新しく git から clone もしくは zip を落として使用してください。**
 2. 明確な命名規則やコーディングルールはありませんが、よしなに合わせてください。
 3. 不要なソースコードは含めず必要に応じてカスタマイズしてください。
 4. ディレクトリ構造の変更は行わないようにお願いいたします。
 5. Composer 等は無視で構いませんが積極的に使用してください。
+
+## 必須プラグイン
+
+1. `WPvivid Backup Plugin`
+   バックアップ・データ移行
+
+2. `Advanced Custom Fields Pro`
+   各種カスタムフィールド・オプションページ
+   `\\IODATA-35a52a\disk1\【顧客情報】\■Allmanage自社関連情報\●各種サービス・システム関係\Advanced Custom Fields Pro（ACF）`
+
+3. `XML Sitemap Generator for Google`
+   サイトマップ生成
+
+4. `Website LLMs.txt`
+   AIO 対策のため導入
+
+## ディレクトリ構成
+
+```
+.
+├── .php-cs-fixer.dist.php   # php-cs-fixerの設定管理ファイル
+├── .phpstan.neon            # phpstanの設定管理ファイル
+├── composer.json            # composerの設定管理ファイル
+├── .vscode/                 # VSCode設定
+│   └── settings.json        # インデント等の共通ルール
+│
+├── config/                  # 案件ごとに変わる設定等
+│
+├── dashboard/               # 管理画面に関連するフック等
+│
+├── func/                    # テーマの独自関数
+│
+├── img/                     # 画像ファイル管理
+│
+├── js/                      # スクリプトファイル管理
+│
+├── style/                   # スタイルファイル管理
+│   ├── css/                 # コンパイル後のCSSファイル
+│   └── scss/                # SCSSソースファイル
+│
+└── view/                    # テンプレートファイル
+   ├── parts/                # 共通コンポーネント
+   │   └── ...               # ヘッダー、フッター等の共通パーツ
+   │
+   ├── page/                 # 固定ページテンプレート
+   │   └── *.php             # スラッグに応じたテンプレート
+   │                         # 例: page/recruit.index.php → /recruit
+   │                         # 例: page/recruit.php → /recruit
+   │
+   ├── single/               # 投稿詳細テンプレート
+   │   └── *.php             # カスタム投稿タイプに応じた詳細テンプレート
+   │
+   ├── taxonomy/             # タクソノミーアーカイブテンプレート
+   │   └── *.php             # タクソノミーに応じたテンプレート
+   │
+   └── archive/              # アーカイブテンプレート
+       └── *.php             # カスタム投稿タイプのアーカイブテンプレート
+```
 
 ## セットアップ
 
@@ -97,43 +151,5 @@ composer analyse
 - CD（継続的デプロイメント）
   - Trigger: staging ブランチへのプルリクエスト
   - Action: 本番環境へ SSH 接続し`git pull`を実行
-
----
-
-## ディレクトリ構成
-
-```
-.
-├── .php-cs-fixer.dist.php   # php-cs-fixerの設定管理ファイル
-├── .phpstan.neon            # phpstanの設定管理ファイル
-├── composer.json            # composerの設定管理ファイル
-├── .vscode/                 # VSCode設定
-│   └── settings.json        # インデント等の共通ルール
-│
-├── func/                    # テーマの独自関数
-│   └── ...                  # functions.phpでincludeされる関数ファイル群
-│
-├── img/                     # 画像ファイル管理
-│
-├── js/                      # スクリプトファイル管理
-│
-├── style/                   # スタイルファイル管理
-│   ├── css/                 # コンパイル後のCSSファイル
-│   └── scss/                # SCSSソースファイル
-│
-└── view/                    # テンプレートファイル
-   ├── parts/                # 共通コンポーネント
-   │   └── ...               # ヘッダー、フッター等の共通パーツ
-   │
-   ├── page/                 # 固定ページテンプレート
-   │   └── *.php             # スラッグに応じたテンプレート
-   │                         # 例: recruit.php → /recruit
-   │
-   ├── single/               # 投稿詳細テンプレート
-   │   └── *.php             # カスタム投稿タイプに応じたテンプレート
-   │
-   └── archive/              # アーカイブテンプレート
-       └── *.php             # カスタム投稿タイプのアーカイブテンプレート
-```
 
 ---

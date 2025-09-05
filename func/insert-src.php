@@ -20,6 +20,7 @@ function my_front_style(): void
     wp_enqueue_style($file, $dir . $file, false, '0.1.0');
   }
 }
+add_action('wp_enqueue_scripts', 'my_front_style');
 
 
 /**
@@ -29,8 +30,8 @@ function my_front_script(): void
 {
   $dir = get_template_directory_uri() . '/js/';
   $js_files = [
-    'index.js?v=' . time(),
-    'jquery.inview.min.js?v=' . time(),
+    'scripts.js?v=' . time(),
+    'scripts_add.js?v=' . time(),
   ];
 
   wp_deregister_script('jquery');
@@ -53,14 +54,4 @@ function my_front_script(): void
 
   // wp_add_inline_script( $handle, $inline_script );
 }
-
-
-/**
- * フロント画面で使用したいcss・jsを読み込む
- */
-function add_front_theme(): void
-{
-  add_action('wp_enqueue_scripts', 'my_front_style');
-  add_action('wp_enqueue_scripts', 'my_front_script');
-}
-add_action('after_setup_theme', 'add_front_theme');
+add_action('wp_enqueue_scripts', 'my_front_script');

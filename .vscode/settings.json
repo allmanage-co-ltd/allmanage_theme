@@ -7,7 +7,8 @@
     }
   ],
   "liveSassCompile.settings.includeItems": [
-    "/style/scss/style.scss"
+    "/style/scss/style.scss",
+    // "/style/inc/include.scss"
   ],
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,

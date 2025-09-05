@@ -1,19 +1,19 @@
 <?php
 
-/**
- *
- */
-function get_url($key)
-{
-  $home = home_url();
+declare(strict_types=1);
 
-  $urls = [
-    'top'     => "{$home}",
-    'company' => "{$home}/company",
-    'recruit' => "{$home}/recruit",
-    'contact' => "{$home}/contact",
-    'privacy-policy' => "{$home}/privacy",
-  ];
+$home = home_url();
 
-  return esc_url($urls[$key]) ?? '#';
-}
+return  [
+  // pages
+  'top'     => "{$home}",
+  'company' => "{$home}/company",
+  'recruit' => "{$home}/recruit",
+  'contact' => "{$home}/contact",
+  'privacy-policy' => "{$home}/privacy-policy",
+
+  // sns
+  'instagram' => '',
+  'x' => '',
+  'facebook' => '',
+];

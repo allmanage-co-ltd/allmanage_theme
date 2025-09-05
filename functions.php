@@ -2,6 +2,5 @@
 
 declare(strict_types=1);
 
-require_once locate_template('func/index.php');
-require_once locate_template('config/index.php');
-require_once locate_template('admin/index.php');
+require_once locate_template('func/init.php');
+require_once locate_template('dashboard/init.php');

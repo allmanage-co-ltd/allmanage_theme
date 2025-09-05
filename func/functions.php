@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+$get_url_array = include theme_dir() . '/config/permalink.php';
+
 /**
  * デバッグ用
  */
@@ -23,11 +25,19 @@ function img_dir()
 
 
 /**
- * テーマまでの絶対パス
+ * テーマまでのパス
  */
 function theme_dir()
 {
   return get_template_directory() . '/';
+}
+
+
+/**
+ * 設定ファイルへのパス
+ */
+function config_dir() {
+  return get_template_directory() . '/config';
 }
 
 
@@ -37,6 +47,16 @@ function theme_dir()
 function home()
 {
   return esc_url(home_url('/'));
+}
+
+
+/**
+ * パーマリンクを取得する関数
+ */
+function get_url($key)
+{
+  global $get_url_array;
+  return esc_url($get_url_array[$key]) ?? '#';
 }
 
 
