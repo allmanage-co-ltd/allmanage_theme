@@ -1,30 +1,36 @@
 <?php
 
 $my_must_plugins = array(
-		array(
-      'name'     => 'WPvivid Backup Plugin',
-      'slug'     => 'wpvivid-backuprestore',
-      // 'force_activation'   => true,
-      'required' => true,
-		),
-		array(
-      'name'     => 'Advanced Custom Fields',
-      'slug'     => 'advanced-custom-fields',
-      // 'force_activation'   => true,
-      'required' => true,
-		),
-		array(
-      'name'     => 'MW WP Form',
-      'slug'     => 'mw-wp-form',
-      // 'force_activation'   => true,
-      'required' => true,
-		),
-		array(
-      'name'     => 'Website LLMs.txt',
-      'slug'     => 'website-llms-txt',
-      // 'force_activation'   => true,
-      'required' => true,
-		),
+  array(
+    'name'     => 'WPvivid Backup Plugin',
+    'slug'     => 'wpvivid-backuprestore',
+    // 'force_activation'   => true,
+    'required' => true,
+  ),
+  array(
+    'name'     => 'Advanced Custom Fields',
+    'slug'     => 'advanced-custom-fields',
+    // 'force_activation'   => true,
+    'required' => true,
+  ),
+  array(
+    'name'     => 'MW WP Form',
+    'slug'     => 'mw-wp-form',
+    // 'force_activation'   => true,
+    'required' => true,
+  ),
+  array(
+    'name'     => 'Website LLMs.txt',
+    'slug'     => 'website-llms-txt',
+    // 'force_activation'   => true,
+    'required' => true,
+  ),
+  array(
+    'name'     => 'SiteGuard WP Plugin',
+    'slug'     => 'siteguard',
+    // 'force_activation'   => true,
+    'required' => true,
+  ),
 );
 
 /**
@@ -59,9 +65,9 @@ $my_must_plugins = array(
  * Plugin:
  * require_once dirname( __FILE__ ) . '/path/to/class-tgm-plugin-activation.php';
  */
-require_once dirname( __FILE__ ) . '/class-tgm-plugin-activation.php';
+require_once dirname(__FILE__) . '/class-tgm-plugin-activation.php';
 
-add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
+add_action('tgmpa_register', 'my_theme_register_required_plugins');
 
 /**
  * Register the required plugins for this theme.
@@ -80,15 +86,16 @@ add_action( 'tgmpa_register', 'my_theme_register_required_plugins' );
  *
  * This function is hooked into `tgmpa_register`, which is fired on the WP `init` action on priority 10.
  */
-function my_theme_register_required_plugins() {
-	/*
+function my_theme_register_required_plugins()
+{
+  /*
 	 * Array of plugin arrays. Required keys are name and slug.
 	 * If the source is NOT from the .org repo, then source is also required.
 	 */
   global $my_must_plugins;
-	$plugins = $my_must_plugins;
+  $plugins = $my_must_plugins;
 
-	/*
+  /*
 	 * Array of configuration settings. Amend each line as needed.
 	 *
 	 * TGMPA will start providing localized text strings soon. If you already have translations of our standard
@@ -97,19 +104,19 @@ function my_theme_register_required_plugins() {
 	 *
 	 * Only uncomment the strings in the config array if you want to customize the strings.
 	 */
-	$config = array(
-		'id'           => 'tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
-		'default_path' => '',                      // Default absolute path to bundled plugins.
-		'menu'         => 'tgmpa-install-plugins', // Menu slug.
-		'parent_slug'  => 'themes.php',            // Parent menu slug.
-		'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
-		'has_notices'  => true,                    // Show admin notices or not.
-		'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
-		'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-		'is_automatic' => false,                   // Automatically activate plugins after installation or not.
-		'message'      => '',                      // Message to output right before the plugins table.
+  $config = array(
+    'id'           => 'tgmpa',                 // Unique ID for hashing notices for multiple instances of TGMPA.
+    'default_path' => '',                      // Default absolute path to bundled plugins.
+    'menu'         => 'tgmpa-install-plugins', // Menu slug.
+    'parent_slug'  => 'themes.php',            // Parent menu slug.
+    'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+    'has_notices'  => true,                    // Show admin notices or not.
+    'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+    'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+    'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+    'message'      => '',                      // Message to output right before the plugins table.
 
-		/*
+    /*
 		'strings'      => array(
 			'page_title'                      => __( 'Install Required Plugins', 'theme-slug' ),
 			'menu_title'                      => __( 'Install Plugins', 'theme-slug' ),
@@ -185,7 +192,7 @@ function my_theme_register_required_plugins() {
 			'nag_type'                        => '', // Determines admin notice type - can only be one of the typical WP notice classes, such as 'updated', 'update-nag', 'notice-warning', 'notice-info' or 'error'. Some of which may not work as expected in older WP versions.
 		),
 		*/
-	);
+  );
 
-	tgmpa( $plugins, $config );
+  tgmpa($plugins, $config);
 }

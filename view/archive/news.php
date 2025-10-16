@@ -31,13 +31,13 @@ $query = new WP_Query($args);
 
   <section>
     <?php if ($query->have_posts()): ?>
+    <div class="">
+      <?php while ($query->have_posts()): $query->the_post(); ?>
       <div class="">
-        <?php while ($query->have_posts()): $query->the_post(); ?>
-          <div class="">
 
-          </div>
-        <?php endwhile; ?>
-        <?php
+      </div>
+      <?php endwhile; ?>
+      <?php
         $links = paginate_links(array(
           'total'        => $loop->max_num_pages,
           'current'      => $paged,
@@ -48,13 +48,13 @@ $query = new WP_Query($args);
         ));
         if ($links) :
         ?>
-        <nav class="wp-pager" role="navigation" aria-label="ページナビゲーション">
-          <ul class="wp-pager__list">
-            <?php foreach ($links as $link) : ?>
-              <li class="wp-pager__item"><?= $link; ?></li>
-            <?php endforeach; ?>
-          </ul>
-        </nav>
+      <nav class="wp-pager" role="navigation" aria-label="ページナビゲーション">
+        <ul class="wp-pager__list">
+          <?php foreach ($links as $link) : ?>
+          <li class="wp-pager__item"><?= $link; ?></li>
+          <?php endforeach; ?>
+        </ul>
+      </nav>
     </div>
     <?php endif; ?>
     <?php else: ?>
