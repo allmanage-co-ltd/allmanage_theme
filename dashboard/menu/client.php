@@ -20,6 +20,8 @@ function my_custom_menus()
     'post' => [
       'news',
       'works',
+      'products',
+      'case',
     ],
     'option' => [
       'usc-e-shop/usc-e-shop.php', // ウェルカート

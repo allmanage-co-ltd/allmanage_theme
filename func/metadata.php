@@ -3,7 +3,7 @@
 /**
  * WordPressの自動title出力を無効化
  */
-add_action('init', function() {
+add_action('init', function () {
   remove_theme_support('title-tag');
 });
 
@@ -13,25 +13,25 @@ add_action('init', function() {
 function get_site_title()
 {
   $title = '';
-
+  $name = get_bloginfo('name');
   switch (true) {
     case is_home() || is_front_page():
       // トップページ
-      $title = get_bloginfo('name');
+      $title = $name;
       break;
 
     case is_single():
       // シングルページ
-      $title = get_the_title() . ' | ' . get_bloginfo('name');
+      $title = get_the_title() . ' | ' . $name;
       break;
 
     case is_search():
       // 検索結果ページ
       $search_query = get_search_query();
       if ($search_query != '') {
-        $title = $search_query . 'の検索結果 | ' . get_bloginfo('name');
+        $title = $search_query . 'の検索結果 | ' . $name;
       } else {
-        $title = '検索結果ページ | ' . get_bloginfo('name');
+        $title = '検索結果ページ | ' . $name;
       }
       break;
 
@@ -57,12 +57,12 @@ function get_site_title()
       } else {
         $term_name = post_type_archive_title('', false);
       }
-      $title = $term_name . ' | ' . get_bloginfo('name');
+      $title = $term_name . ' | ' . $name;
       break;
 
     default:
       // 下層ページ（固定ページなど）
-      $title = get_the_title() . ' | ' . get_bloginfo('name');
+      $title = get_the_title() . ' | ' . $name;
       break;
   }
 
@@ -76,11 +76,12 @@ function get_site_title()
 function get_site_description()
 {
   $description = '';
+  $default = get_bloginfo('description');
 
   switch (true) {
     case is_home() || is_front_page():
       // トップページ
-      $description = get_bloginfo('description');
+      $description = $default;
       break;
 
     case is_single():
@@ -99,7 +100,7 @@ function get_site_description()
 
     case is_search():
       // 検索結果ページ
-      $description = get_bloginfo('description');
+      $description = $default;
       break;
 
     case is_archive() || is_category() || is_tag() || is_tax():
@@ -113,13 +114,13 @@ function get_site_description()
         $description = strip_tags($term_description);
         $description = mb_substr($description, 0, 100);
       } else {
-        $description = get_bloginfo('description');
+        $description = $default;
       }
       break;
 
     default:
       // 下層ページ（固定ページなど）
-      $description = get_bloginfo('description');
+      $description = $default;
       break;
   }
 
