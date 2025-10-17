@@ -1,36 +1,36 @@
 <?php
 
 $my_must_plugins = array(
-  array(
-    'name'     => 'WPvivid Backup Plugin',
-    'slug'     => 'wpvivid-backuprestore',
-    // 'force_activation'   => true,
-    'required' => true,
-  ),
-  array(
-    'name'     => 'Advanced Custom Fields',
-    'slug'     => 'advanced-custom-fields',
-    // 'force_activation'   => true,
-    'required' => true,
-  ),
-  array(
-    'name'     => 'MW WP Form',
-    'slug'     => 'mw-wp-form',
-    // 'force_activation'   => true,
-    'required' => true,
-  ),
-  array(
-    'name'     => 'Website LLMs.txt',
-    'slug'     => 'website-llms-txt',
-    // 'force_activation'   => true,
-    'required' => true,
-  ),
-  array(
-    'name'     => 'SiteGuard WP Plugin',
-    'slug'     => 'siteguard',
-    // 'force_activation'   => true,
-    'required' => true,
-  ),
+		array(
+      'name'     => 'WPvivid Backup Plugin',
+      'slug'     => 'wpvivid-backuprestore',
+      // 'force_activation'   => true,
+      'required' => true,
+		),
+		array(
+      'name'     => 'Advanced Custom Fields',
+      'slug'     => 'advanced-custom-fields',
+      // 'force_activation'   => true,
+      'required' => true,
+		),
+		array(
+      'name'     => 'MW WP Form',
+      'slug'     => 'mw-wp-form',
+      // 'force_activation'   => true,
+      'required' => true,
+		),
+		array(
+      'name'     => 'SiteGuard WP Plugin',
+      'slug'     => 'siteguard',
+      // 'force_activation'   => true,
+      'required' => true,
+		),
+		array(
+      'name'     => 'Website LLMs.txt',
+      'slug'     => 'website-llms-txt',
+      // 'force_activation'   => true,
+      'required' => true,
+		),
 );
 
 /**
