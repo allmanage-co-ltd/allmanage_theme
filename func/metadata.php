@@ -60,6 +60,11 @@ function get_site_title()
       $title = $term_name . ' | ' . $name;
       break;
 
+    case is_404():
+      // 404ページ
+      $title = 'お探しのページが見つかりません | ' . get_bloginfo('name');
+      break;
+
     default:
       // 下層ページ（固定ページなど）
       $title = get_the_title() . ' | ' . $name;
@@ -107,7 +112,7 @@ function get_site_description()
       // アーカイブ、カテゴリー、タグ、タクソノミーページ
       $term_description = '';
       if (is_category() || is_tag() || is_tax()) {
-        $term_description = term_description();
+        $term_description = term_description() ?? $default;
       }
 
       if (!empty($term_description)) {
