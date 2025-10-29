@@ -36,7 +36,8 @@ function theme_dir()
 /**
  * 設定ファイルへのパス
  */
-function config_dir() {
+function config_dir()
+{
   return get_template_directory() . '/config';
 }
 
@@ -59,6 +60,63 @@ function get_url($key)
   return esc_url($get_url_array[$key]) ?? '#';
 }
 
+
+/**
+ * ページ情報を取得する関数
+ */
+function getPageInfo($case = 'original')
+{
+  // アーカイブページの場合
+  if (is_post_type_archive()) {
+    $post_type = get_post_type();
+    $post_type_obj = get_post_type_object($post_type);
+    $title = $post_type_obj->labels->name;
+    $slug = $post_type;
+  } else {
+    // 通常ページ：コメントから抽出
+    $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1);
+    $file = $backtrace[0]['file'];
+    $content = file_get_contents($file);
+
+    preg_match('/Page Title:\s*(.+)/', $content, $titleMatch);
+    preg_match('/Page Slug:\s*(.+)/', $content, $slugMatch);
+
+    $title = isset($titleMatch[1]) ? trim($titleMatch[1]) : '';
+    $slug = isset($slugMatch[1]) ? trim($slugMatch[1]) : '';
+  }
+
+  // スラッグの変換
+  switch ($case) {
+    case 'upper':
+      // UpperCamelCase
+      $slug = str_replace(['-', '_'], ' ', $slug);
+      $slug = ucwords($slug);
+      $slug = str_replace(' ', '', $slug);
+      break;
+    case 'lower':
+      // lowerCamelCase
+      $slug = str_replace(['-', '_'], ' ', $slug);
+      $slug = ucwords($slug);
+      $slug = str_replace(' ', '', $slug);
+      $slug = lcfirst($slug);
+      break;
+    case 'all':
+      // 全大文字（ハイフン・アンダースコアは半角スペースに）
+      $slug = str_replace(['-', '_'], ' ', $slug);
+      $slug = strtoupper($slug);
+      break;
+    case 'original':
+    default:
+      // ハイフンとアンダースコアを半角スペースに
+      $slug = str_replace(['-', '_'], ' ', $slug);
+      break;
+  }
+
+  return [
+    'title' => $title,
+    'slug' => $slug
+  ];
+}
 
 /**
  * 404へリダイレクト
@@ -233,19 +291,19 @@ function is_kindle()
 function is_mobile()
 {
   $useragents = [
-    'iPhone',          // iPhone
-    'iPod',            // iPod touch
-    'Android',         // 1.5+ Android
-    'dream',           // Pre 1.5 Android
-    'CUPCAKE',         // 1.5+ Android
-    'blackberry9500',  // Storm
-    'blackberry9530',  // Storm
-    'blackberry9520',  // Storm v2
-    'blackberry9550',  // Storm v2
-    'blackberry9800',  // Torch
-    'webOS',           // Palm Pre Experimental
-    'incognito',       // Other iPhone browser
-    'webmate',          // Other iPhone browser
+    'iPhone', // iPhone
+    'iPod', // iPod touch
+    'Android', // 1.5+ Android
+    'dream', // Pre 1.5 Android
+    'CUPCAKE', // 1.5+ Android
+    'blackberry9500', // Storm
+    'blackberry9530', // Storm
+    'blackberry9520', // Storm v2
+    'blackberry9550', // Storm v2
+    'blackberry9800', // Torch
+    'webOS', // Palm Pre Experimental
+    'incognito', // Other iPhone browser
+    'webmate', // Other iPhone browser
   ];
   $pattern = '/' . implode('|', $useragents) . '/i';
 

@@ -21,7 +21,7 @@ get_header();
   </div>
 
   <section>
-   
+
   </section>
 
 </main>

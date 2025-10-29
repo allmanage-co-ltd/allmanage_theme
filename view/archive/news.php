@@ -10,6 +10,7 @@ $args = [
   'paged' =>  $paged,
 ];
 $query = new WP_Query($args);
+$page = getPageInfo('all');
 ?>
 
 <main class="">
@@ -18,8 +19,8 @@ $query = new WP_Query($args);
     <div class="p-kv_under__inner">
       <div class="c-inner">
         <div class="p-kv_under__ttl">
-          <div class="en">Title</div>
-          <div class="jp">タイトル</div>
+          <div class="en"><?= $page['slug'] ?></div>
+          <div class="jp"><?= $page['title'] ?></div>
         </div>
       </div>
     </div>
