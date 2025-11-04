@@ -2,11 +2,8 @@
 
 /**
  * Cookie同意ポップアップを表示する関数
- *
- * showCookieConsent($days = 180, $link = get_url('privacypolicy'), $mainBg = '#223A5E', $acceptBtnBg = '#FF6B00');
- *
  */
-function showCookieConsent($days = 365, $link = '/privacypolicy', $mainBg = '#223A5E', $acceptBtnBg = '#FF6B00')
+function showCookieConsent($days = 365, $link = '/privacypolicy', $acceptBtnBg = '#FF6B00')
 {
   $cookieName = 'cookie_consent';
 
@@ -34,7 +31,6 @@ function showCookieConsent($days = 365, $link = '/privacypolicy', $mainBg = '#22
 ?>
 <style>
 :root {
-  --CookieMainBg: <?=$mainBg ?>;
   --CookieAcceptBtnBg: <?=$acceptBtnBg ?>;
 }
 
@@ -44,7 +40,7 @@ function showCookieConsent($days = 365, $link = '/privacypolicy', $mainBg = '#22
   left: 50%;
   transform: translateX(-50%);
   width: min(90%, 800px);
-  background: var(--CookieMainBg);
+  background: #fff;
   color: white;
   padding: 20px;
   text-align: center;
@@ -62,10 +58,11 @@ function showCookieConsent($days = 365, $link = '/privacypolicy', $mainBg = '#22
   margin: 0 0 15px 0;
   font-size: 14px;
   line-height: 1.6;
+  color: #000;
 }
 
 .cookie-consent a {
-  color: #fff;
+  color: #000;
   text-decoration: underline;
 }
 
@@ -105,7 +102,7 @@ function showCookieConsent($days = 365, $link = '/privacypolicy', $mainBg = '#22
   background: #fff;
 }
 
-@media screen and (max-width: 767.9px) {
+@media (max-width: 600px) {
   .cookie-consent {
     bottom: 0;
     width: 100%;
@@ -130,4 +127,5 @@ function showCookieConsent($days = 365, $link = '/privacypolicy', $mainBg = '#22
 </div>
 <?php
 }
+// showCookieConsent(365, '/privacypolicy');
 ?>

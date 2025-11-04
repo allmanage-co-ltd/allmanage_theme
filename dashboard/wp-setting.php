@@ -83,6 +83,29 @@ function disable_emoji(): void
 add_action('init', 'disable_emoji');
 
 
+function my_frontend_files()
+{
+  wp_enqueue_script('jquery');
+
+  // 「wp-block-library-css」を削除
+  wp_dequeue_style('wp-block-library');
+}
+add_action('wp_enqueue_scripts', 'my_frontend_files');
+
+
+/**
+ * スタイル・スクリプトのバージョン情報を消す
+ */
+function remove_src_ver($src)
+{
+  if (strpos($src, 'ver='))
+    $src = remove_query_arg('ver', $src);
+  return $src;
+}
+add_filter('style_loader_src', 'remove_src_ver', 9999);
+add_filter('script_loader_src', 'remove_src_ver', 9999);
+
+
 /**
  * クエリ書き換え
  */
@@ -153,6 +176,23 @@ function custom_class_names($classes)
 }
 add_filter('body_class', 'custom_class_names');
 
+
+/**
+ * ビジュアルエディター OFF
+ */
+function disable_visual_editor_in_page()
+{
+  global $typenow;
+  if ($typenow == 'mw-wp-form') {
+    add_filter('user_can_richedit', 'disable_visual_editor_filter');
+  }
+}
+function disable_visual_editor_filter()
+{
+  return false;
+}
+add_action('load-post.php', 'disable_visual_editor_in_page');
+add_action('load-post-new.php', 'disable_visual_editor_in_page');
 
 
 /**

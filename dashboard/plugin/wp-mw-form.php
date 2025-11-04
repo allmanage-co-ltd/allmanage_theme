@@ -7,6 +7,18 @@ declare(strict_types=1);
  */
 function my_footer_script()
 {
+
+  if (is_page('contact')): ?>
+<script>
+$(function() {
+  //規約チェックボックスの文言変更
+  $('.c-form__agreement .mwform-checkbox-field-text').html(
+    '「<a href="<?php echo esc_url(home_url('privacypolicy/')); ?>" target="_blank" class="u-txt_ul">プライバシーポリシー</a>」に同意する'
+  );
+});
+</script>
+<?php endif;
+
   if (is_page(['contact', 'confirm', 'thanks'])) : ?>
 <script type="text/javascript">
 jQuery(function($) {
