@@ -100,7 +100,7 @@ function breadcrumb(): void
         }
       } else {
         $obj = get_post_type_object(get_post_type());
-        $items[] = '<li><a href="' . home() . 'news">' . $obj->label . '</a></li>';
+        $items[] = '<li><a href="' . home() .  $obj->name . '">' . $obj->label . '</a></li>';
       }
       $items[] = '<li>' . $post->post_title . '</li>';
       break;

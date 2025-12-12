@@ -96,14 +96,14 @@ add_action('wp_enqueue_scripts', 'my_frontend_files');
 /**
  * スタイル・スクリプトのバージョン情報を消す
  */
-function remove_src_ver($src)
-{
-  if (strpos($src, 'ver='))
-    $src = remove_query_arg('ver', $src);
-  return $src;
-}
-add_filter('style_loader_src', 'remove_src_ver', 9999);
-add_filter('script_loader_src', 'remove_src_ver', 9999);
+// function remove_src_ver($src)
+// {
+//   if (strpos($src, 'ver='))
+//     $src = remove_query_arg('ver', $src);
+//   return $src;
+// }
+// add_filter('style_loader_src', 'remove_src_ver', 9999);
+// add_filter('script_loader_src', 'remove_src_ver', 9999);
 
 
 /**

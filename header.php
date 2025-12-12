@@ -25,7 +25,7 @@ $bodyClass  = esc_attr(implode(' ', get_body_class()));
 
 <body class="<?= $bodyClass ?>">
 
-  <header class="header" id="header">
+  <header class="header" id="js-header">
     <div class="header-inner">
       <h1 class="header-logo">
         <a href="<?= home(); ?>">
