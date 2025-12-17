@@ -10,7 +10,7 @@ return  [
   'company' => "{$home}/company",
   'recruit' => "{$home}/recruit",
   'contact' => "{$home}/contact",
-  'privacypolicy' => "{$home}/privacypolicy",
+  'privacy' => "{$home}/privacy",
 
   // sns
   'instagram' => '',

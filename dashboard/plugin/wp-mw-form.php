@@ -13,7 +13,7 @@ function my_footer_script()
 $(function() {
   //規約チェックボックスの文言変更
   $('.c-form__agreement .mwform-checkbox-field-text').html(
-    '「<a href="<?php echo esc_url(home_url('privacypolicy/')); ?>" target="_blank" class="u-txt_ul">プライバシーポリシー</a>」に同意する'
+    '「<a href="<?php echo esc_url(home_url('privacy/')); ?>" target="_blank" class="u-txt_ul">プライバシーポリシー</a>」に同意する'
   );
 });
 </script>
@@ -23,9 +23,9 @@ $(function() {
 <script type="text/javascript">
 jQuery(function($) {
   if ($('.mw_wp_form_confirm, .mw_wp_form_complete').length) {
-
-    // $('').hide();
-
+    $('.c-form__notes').hide();
+    $('.c-form__privacy').hide();
+    $('.c-form__agreement').hide();
   }
 });
 </script>

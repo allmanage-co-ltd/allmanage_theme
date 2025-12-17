@@ -25,14 +25,25 @@ $bodyClass  = esc_attr(implode(' ', get_body_class()));
 
 <body class="<?= $bodyClass ?>">
 
-  <header class="header" id="js-header">
-    <div class="header-inner">
-      <h1 class="header-logo">
-        <a href="<?= home(); ?>">
-          <img src="<?= get_template_directory_uri(); ?>/img/common/logo.png" alt="<?= get_bloginfo('name'); ?>">
-        </a>
-      </h1>
+  <?php if (file_exists(get_template_directory() . '/img/common/symbol-defs.svg')) {
+    include_once(get_template_directory() . '/img/common/symbol-defs.svg');
+  } ?>
 
-      <?php get_template_part('view/parts/header-navi'); ?>
-    </div>
+  <?php
+  if (!is_front_page() || is_home()) {
+    echo '<header class="l-header -page" id="js-header">';
+  } else {
+    echo '<header class="l-header" id="js-header">';
+  }
+  ?>
+  <div class="header-inner">
+    <h1 class="header-logo">
+      <a href="<?= home(); ?>">
+        <img src="<?= get_template_directory_uri(); ?>/img/common/logo.png" alt="<?= get_bloginfo('name'); ?>">
+      </a>
+    </h1>
+
+    <?php get_template_part('view/parts/header-navi'); ?>
+  </div>
   </header>
+  <div class="l-header__overlay slideout-panel slideout-panel-left" id="js-drawerPanel"></div>
