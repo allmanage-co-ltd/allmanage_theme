@@ -356,3 +356,88 @@ function isBot()
 
   return $is_bot;
 }
+
+
+/**
+ * 検索キーワード分割
+ *
+ * $keywords = split_search_keywords($search_query);
+ */
+function split_search_keywords(string $search_query): array
+{
+  if ($search_query === '') {
+    return [];
+  }
+
+  return preg_split(
+    '/[\s　]+/u',
+    trim($search_query),
+    -1,
+    PREG_SPLIT_NO_EMPTY
+  );
+}
+
+/**
+ * 文字列にキーワードが含まれるか判定する
+ *
+ * $title_match   = has_keyword_match($title, $keywords);
+ * $content_match = has_keyword_match($content, $keywords);
+ */
+function has_keyword_match(string $text, array $keywords): bool
+{
+  foreach ($keywords as $keyword) {
+    if (stripos($text, $keyword) !== false) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * 共通のハイライト関数
+ */
+function highlight_keywords(string $text, array $keywords): string
+{
+  if (empty($keywords)) {
+    return $text;
+  }
+
+  $pattern = '/' . implode('|', array_map(function ($keyword) {
+    return preg_quote($keyword, '/');
+  }, $keywords)) . '/iu';
+
+  return preg_replace(
+    $pattern,
+    '<mark class="c-highlight">$0</mark>',
+    $text
+  );
+}
+
+/**
+ * タイトル用の出力（the_title互換）
+ *
+ * <?php output_highlighted_title($keywords, $title_match); ?>
+*/
+function output_highlighted_title(array $keywords, bool $title_match): void
+{
+if (!$title_match || empty($keywords)) {
+the_title();
+return;
+}
+
+echo highlight_keywords(esc_html(get_the_title()), $keywords);
+}
+
+/**
+* 本文用の出力（the_content互換）
+* <?php output_highlighted_content($keywords, $content_match); ?>
+*/
+function output_highlighted_content(array $keywords, bool $content_match): void
+{
+if ($content_match) {
+$content = apply_filters('the_content', get_the_content());
+echo highlight_keywords($content, $keywords);
+} else {
+the_content();
+}
+}

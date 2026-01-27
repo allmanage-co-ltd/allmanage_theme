@@ -1,3 +1,3 @@
-<aside>
+<aside class="l-sidebar">
 
 </aside>

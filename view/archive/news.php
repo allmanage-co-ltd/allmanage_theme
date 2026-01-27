@@ -57,31 +57,13 @@ $query = new WP_Query($args);
 
         </li>
         <?php endwhile; ?>
-        <?php
-          $links = paginate_links(array(
-            'total'        => $loop->max_num_pages,
-            'current'      => $paged,
-            'mid_size'     => 2,
-            'prev_text'    => '←',
-            'next_text'    => '→',
-            'type'         => 'array',
-          ));
-          if ($links) :
-          ?>
-        <nav class="wp-pager" role="navigation" aria-label="ページナビゲーション">
-          <ul class="wp-pager__list">
-            <?php foreach ($links as $link) : ?>
-            <li class="wp-pager__item"><?= $link; ?></li>
-            <?php endforeach; ?>
-          </ul>
-        </nav>
-      </ul>
-      <?php endif; ?>
-      <?php else: ?>
-      <p class="u-center u-mgt_xxl">
-        投稿がありません
-      </p>
-      <?php endif; ?>
+
+        <?php include(theme_dir() . '/view/parts/pagination.php'); ?>
+
+        <p class="u-center u-mgt_xxl">
+          投稿がありません
+        </p>
+        <?php endif; ?>
     </div>
   </section>
 

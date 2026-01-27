@@ -5,7 +5,7 @@ Page Slug: privacy
 */
 get_header();
 
-$name = '社名';
+$name = 'オールマネージ';
 $abb = '当社';
 ?>
 

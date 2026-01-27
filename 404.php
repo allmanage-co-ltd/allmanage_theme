@@ -1,7 +1,7 @@
 <?php
 get_header();
 
-$name = '社名';
+$name = 'オールマネージ';
 ?>
 
 <main class="p-404">
