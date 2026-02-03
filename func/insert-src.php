@@ -37,7 +37,7 @@ function my_front_script(): void
   wp_deregister_script('jquery');
 
   // wp_enqueue_script('swiper', 'https://unpkg.com/swiper/swiper-bundle.min.js', [], false, true);
-  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], false, true);
+  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js', [], false, true);
 
   foreach ($js_files as $file) {
     wp_enqueue_script($file, $dir . $file, ['jquery'], '0.1.0', true);

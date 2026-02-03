@@ -5,7 +5,7 @@ Page Slug: contact
 */
 get_header();
 
-// initFlatpickr([
+// init_datepickr([
 //   'dateFormat' => 'Y年m月d日',
 //   'yearRange' => '-50:+0',
 //   'minDate' => 0

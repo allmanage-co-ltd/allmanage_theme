@@ -3,9 +3,9 @@
 /**
  * Cookie同意ポップアップを表示する関数
  *
- * showCookieConsent($days = 365, $link = '/privacypolicy', $acceptBtnBg = '#FF6B00');
+ * init_cookie_modal($days = 365, $link = '/privacypolicy', $acceptBtnBg = '#FF6B00');
  */
-function showCookieConsent($days = 365, $link = '/privacypolicy', $acceptBtnBg = '#FF6B00')
+function init_cookie_modal($days = 365, $link = '/privacypolicy', $acceptBtnBg = '#FF6B00')
 {
   $cookieName = 'cookie_consent';
 

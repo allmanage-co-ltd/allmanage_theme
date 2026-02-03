@@ -3,9 +3,9 @@
 /**
  * フォーム設置ページで初期化後、付与したいテキストフィールドにjs-datepickerクラスを付与する
  *
- * initFlatpickr(['dateFormat' => 'Y年m月d日']);
+ * init_datepickr(['dateFormat' => 'Y年m月d日']);
  */
-function initFlatpickr($options = [])
+function init_datepickr($options = [])
 {
   $defaults = [
     'dateFormat' => 'Y年m月d日',

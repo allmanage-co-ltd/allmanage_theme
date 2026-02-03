@@ -1,148 +1,126 @@
-/**
- * ヘッダーの高さをグローバルCSS変数に格納
- * js-header-readyクラスをbodyに追加
- */
-$(() => {
-	function setHeaderHeight() {
-		const $header = $("#js-header");
-		if ($header.length) {
-			const headerHeight = $header.outerHeight() + "px";
-			$(":root").css("--header-height", headerHeight);
-			$("body").addClass("js-header-ready");
-		}
-	}
-	setHeaderHeight();
-	$(window).on("resize load", setHeaderHeight);
-});
-$(() => {
-	function setBodyHeight() {
-		const bodyHeight = document.documentElement.scrollHeight + "px";
-		$(":root").css("--body-height", bodyHeight);
-		$("body").addClass("js-body-ready");
-	}
-	setBodyHeight();
-	$(window).on("resize load", setBodyHeight);
-});
+jQuery(function ($) {
 
-var headerTag = $(".l-header");
+  /**
+   * ヘッダー高さ
+   */
+  function setHeaderHeight() {
+    const $header = $("#js-header");
+    if ($header.length) {
+      const headerHeight = $header.outerHeight() + "px";
+      $(":root").css("--header-height", headerHeight);
+      $("body").addClass("js-header-ready");
+    }
+  }
 
-$(window).on("load scroll", () => {
-	var windowHeight = $(window).height(),
-		winWidth = $(window).width(),
-		winWidthSm = 941,
-		topWindow = $(window).scrollTop();
+  function setBodyHeight() {
+    const bodyHeight = document.documentElement.scrollHeight + "px";
+    $(":root").css("--body-height", bodyHeight);
+    $("body").addClass("js-body-ready");
+  }
 
-	$(".js-anime").each(function () {
-		var self = $(this);
-		var targetPosition = self.offset().top;
-		if (winWidth > winWidthSm) {
-			triggerPosition = targetPosition - windowHeight + windowHeight / 5;
-		} else {
-			triggerPosition = targetPosition - windowHeight + windowHeight / 10;
-		}
-		if (topWindow > triggerPosition) {
-			self.addClass("scrolled");
-		}
-	});
-});
+  setHeaderHeight();
+  setBodyHeight();
 
-// $(window).on('load', function() {
-// 	const url = $(location).attr('href'),
-// 	headerHeight = $('header').outerHeight();
+  $(window).on("resize load", function () {
+    setHeaderHeight();
+    setBodyHeight();
+  });
 
-// 	if(url.indexOf("#") != -1){
-// 		const anchor = url.split("#"),
-// 		target = $('#' + anchor[anchor.length - 1]),
-// 		position = Math.floor(target.offset().top) - headerHeight - 50;
-// 		$("html, body").animate({scrollTop:position}, 500);
-// 	}
-// });
+  /**
+   * スクロールアニメーション
+   */
+  const $header = $(".l-header");
 
-$(() => {
-	var $header = $("#js-header");
-	var scrollThreshold = 1;
-	var $homeKv = $(".p-home_kv");
-	var headerHeight = $header.outerHeight();
-	var lastScrollTop = 0;
-	var isHeaderHidden = false;
-	var scrollThresholdHide = 400;
-	var isLargeScreen = $(window).width() >= 992;
+  $(window).on("load scroll", function () {
+    const windowHeight = $(window).height();
+    const winWidth = $(window).width();
+    const winWidthSm = 941;
+    const topWindow = $(window).scrollTop();
 
-	function handleScroll() {
-		if (!isLargeScreen) return;
-		var scrollTop = $(window).scrollTop();
-		// 最初のスクロールの挙動
-		if (scrollTop > scrollThreshold) {
-			$header.addClass("on");
-		} else {
-			$header.removeClass("on");
-		}
-		// スクロール方向を判定
-		var isScrollingDown = scrollTop > lastScrollTop;
-		if (scrollTop > scrollThresholdHide && !isHeaderHidden && isScrollingDown) {
-			// 400pxを超えて、下スクロール中の場合
-			$header.animate(
-				{
-					top: -headerHeight,
-				},
-				10,
-			);
-			isHeaderHidden = true;
-		} else if (
-			(scrollTop <= scrollThresholdHide || !isScrollingDown) &&
-			isHeaderHidden
-		) {
-			// 400px以内に戻った、または上スクロール中の場合
-			$header.animate(
-				{
-					top: 0,
-				},
-				10,
-			);
-			isHeaderHidden = false;
-		}
-		lastScrollTop = scrollTop;
-	}
+    $(".js-anime").each(function () {
+      const self = $(this);
+      const targetPosition = self.offset().top;
+      const triggerPosition =
+        winWidth > winWidthSm
+          ? targetPosition - windowHeight + windowHeight / 5
+          : targetPosition - windowHeight + windowHeight / 10;
 
-	function handleResize() {
-		isLargeScreen = $(window).width() >= 992;
-		headerHeight = $header.outerHeight();
-		if (!isLargeScreen) {
-			$header.css("top", "");
-			isHeaderHidden = false;
-		}
-	}
+      if (topWindow > triggerPosition) {
+        self.addClass("scrolled");
+      }
+    });
+  });
 
-	$(window).scroll(handleScroll);
-	//$(window).resize(handleResize);
+  /**
+   * ヘッダー表示制御
+   */
+  let lastScrollTop = 0;
+  let isHeaderHidden = false;
+  let headerHeight = $header.outerHeight();
+  let isLargeScreen = $(window).width() >= 992;
+  const scrollThreshold = 1;
+  const scrollThresholdHide = 400;
 
-	// 初期化
-	handleResize();
-});
+  function handleScroll() {
+    if (!isLargeScreen) return;
 
-$(() => {
-	var totop = $("#js-totop");
-	totop.hide();
-	$(window).scroll(function () {
-		if ($(this).scrollTop() > 100) {
-			totop.fadeIn();
-		} else {
-			totop.fadeOut();
-		}
-	});
-	totop.click(() => {
-		$("body, html").animate({ scrollTop: 0 }, 500);
-		return false;
-	});
-});
+    const scrollTop = $(window).scrollTop();
+    $header.toggleClass("on", scrollTop > scrollThreshold);
 
-$(".js-mvSlide").slick({
-	fade: true,
-	autoplay: true,
-	autoplaySpeed: 6000,
-	speed: 1200,
-	arrows: false,
-	dots: true,
-	pauseOnFocus: false,
-	pauseOnHover: false,
+    const isScrollingDown = scrollTop > lastScrollTop;
+
+    if (scrollTop > scrollThresholdHide && isScrollingDown && !isHeaderHidden) {
+      $header.animate({ top: -headerHeight }, 10);
+      isHeaderHidden = true;
+    } else if ((!isScrollingDown || scrollTop <= scrollThresholdHide) && isHeaderHidden) {
+      $header.animate({ top: 0 }, 10);
+      isHeaderHidden = false;
+    }
+
+    lastScrollTop = scrollTop;
+  }
+
+  function handleResize() {
+    isLargeScreen = $(window).width() >= 992;
+    headerHeight = $header.outerHeight();
+    if (!isLargeScreen) {
+      $header.css("top", "");
+      isHeaderHidden = false;
+    }
+  }
+
+  $(window).on("scroll", handleScroll);
+  handleResize();
+
+  /**
+   * ToTop
+   */
+  const totop = $("#js-totop").hide();
+
+  $(window).scroll(function () {
+    totop.toggle($(this).scrollTop() > 100);
+  });
+
+  totop.on("click", function () {
+    $("body, html").animate({ scrollTop: 0 }, 500);
+    return false;
+  });
+
+  /**
+   * slick
+   */
+  if ($(".js-mvSlide").length) {
+    $(".js-mvSlide").slick({
+      fade: true,
+      autoplay: true,
+      autoplaySpeed: 6000,
+      speed: 1200,
+      arrows: false,
+      dots: true,
+      pauseOnFocus: false,
+      pauseOnHover: false,
+    });
+  }
+
+
 });

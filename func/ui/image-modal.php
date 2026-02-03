@@ -3,9 +3,9 @@
 /**
  * 画像クリックで拡大表示
  *
- * showImageModalScript(2.5, '拡大表示');
+ * init_image_modal(2.5, '拡大表示');
  */
-function showImageModalScript($scale = 2.5, $hoverText = '拡大表示')
+function init_image_modal($scale = 2.5, $hoverText = '拡大表示')
 {
 ?>
 <div class="modal" id="imgModal">

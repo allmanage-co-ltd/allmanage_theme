@@ -1,6 +1,9 @@
 <!-- <a href="#" class="link -current js-lang-btn js-lang-ja">JP</a> -->
 <!-- <a href="#" class="link js-lang-btn js-lang-en">EN</a> -->
+<?php
 
+function init_translate()
+{ ?>
 <div id="google_translate_element"></div>
 
 <style>
@@ -143,3 +146,7 @@ jQuery(function($) {
 
 window.manualRetry = manualRetry;
 </script>
+
+<?php
+}
+?>
