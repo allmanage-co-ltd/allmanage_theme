@@ -28,16 +28,14 @@ add_action('wp_enqueue_scripts', 'my_front_style');
  */
 function my_front_script(): void
 {
+  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js', [], false, true);
+  // wp_enqueue_script('swiper', 'https://unpkg.com/swiper/swiper-bundle.min.js', [], false, true);
+
   $dir = get_template_directory_uri() . '/js/';
   $js_files = [
     'scripts.js?v=' . time(),
     'scripts_add.js?v=' . time(),
   ];
-
-  wp_deregister_script('jquery');
-
-  // wp_enqueue_script('swiper', 'https://unpkg.com/swiper/swiper-bundle.min.js', [], false, true);
-  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js', [], false, true);
 
   foreach ($js_files as $file) {
     wp_enqueue_script($file, $dir . $file, ['jquery'], '0.1.0', true);

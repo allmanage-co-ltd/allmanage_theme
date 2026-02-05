@@ -5,7 +5,8 @@ declare(strict_types=1);
 /**
  * 管理画面 css
  */
-function my_admin_style(): void {
+function my_admin_style(): void
+{
   wp_enqueue_style(
     'admin',
     get_template_directory_uri() . '/dashboard/assets/dashboard.css?v=' . time(),
@@ -23,8 +24,11 @@ add_action('login_enqueue_scripts', 'my_admin_style');
 /**
  * 管理画面 js
  */
-function my_admin_script(): void {
+function my_admin_script(): void
+{
   wp_enqueue_media();
+  wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js', [], false, true);
+
   wp_enqueue_script(
     'admin',
     get_template_directory_uri() . '/dashboard/assets/dashboard.js?v=' . time(),

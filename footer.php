@@ -11,11 +11,11 @@
 
     </footer>
 
-    <div id="js-totop" class="c-totop">
+    <!-- <div id="js-totop" class="c-totop">
       <svg class="arrow c-totop__icon">
         <use xlink:href="#icon-arrow"></use>
       </svg>
-    </div>
+    </div> -->
 
     <?php wp_footer(); ?>
     </body>
