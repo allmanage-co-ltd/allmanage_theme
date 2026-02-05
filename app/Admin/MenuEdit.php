@@ -5,27 +5,31 @@ namespace App\Admin;
 /**-----------------------------------
  *
  *----------------------------------*/
-
 class MenuEdit
 {
-  public function __construct()
+  public function __construct() {}
+
+  /**
+   *
+   */
+  public function boot(): void
   {
     $this->option();
     $this->admin();
     $this->client();
   }
 
-  private function option()
+  private function option(): void
   {
     //
   }
 
-  private function admin()
+  private function admin(): void
   {
     //
   }
 
-  private function client()
+  private function client(): void
   {
     //
   }

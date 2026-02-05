@@ -8,7 +8,12 @@ namespace App\Hook;
 
 class MwFormHook
 {
-  public function __construct()
+  public function __construct() {}
+
+  /**
+   *
+   */
+  public function boot(): void
   {
     $this->add_yubinbango_script();
     $this->add_yubinbango_class();
@@ -18,7 +23,7 @@ class MwFormHook
   /**
    *
    */
-  private function add_yubinbango_script()
+  private function add_yubinbango_script(): void
   {
     //
   }
@@ -36,7 +41,7 @@ class MwFormHook
    *   町域：p-street-address
    *   詳細住所：p-extended-address
    */
-  private function add_yubinbango_class()
+  private function add_yubinbango_class(): void
   {
     add_action('wp_enqueue_scripts', function () {
       wp_enqueue_script('yubinbango', 'https://yubinbango.github.io/yubinbango/yubinbango.js', array(), false, true);
@@ -46,7 +51,7 @@ class MwFormHook
   /**
    *
    */
-  private function mwform_send_mail_content()
+  private function mwform_send_mail_content(): void
   {
     add_filter('mwform_custom_mail_tag', function ($value, $key, $insert_contact_data_id) {
 

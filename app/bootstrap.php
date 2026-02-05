@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Admin\AdminFooter;
-use App\Admin\CustomPost;
+use App\Admin\RegisterPostType;
 use App\Admin\MenuEdit;
 use App\Admin\Settings;
 use App\Admin\Shortcode;
@@ -18,18 +18,19 @@ use App\Hook\WelcartHook;
  */
 class App
 {
-  public const VERSION = '0.1.0';
-
   public function __construct() {}
 
-  /**-----------------------------------
+  //
+  public const VERSION = '0.1.0';
+
+  /**
    *
-   *----------------------------------*/
-  public function boot()
+   */
+  public function boot(): void
   {
     //
     new Settings();
-    new CustomPost();
+    new RegisterPostType();
     new MenuEdit();
     new Shortcode();
     new AdminFooter();
@@ -43,21 +44,21 @@ class App
     $this->enqueue();
   }
 
-  /**-----------------------------------
+  /**
    *
-   *----------------------------------*/
+   */
   public function enqueue()
   {
     $dir = get_template_directory_uri();
 
     // フロントCSS
-    add_action('wp_enqueue_scripts', function () use ($dir) {
+    add_action('wp_enqueue_scripts', function () use ($dir): void {
       wp_enqueue_style('style', $dir . '/assets/css/style.css', false, $this::VERSION);
       wp_enqueue_style('include', $dir . '/assets/css/include.css', false, $this::VERSION);
     });
 
     // フロントJS
-    add_action('wp_enqueue_scripts', function () use ($dir) {
+    add_action('wp_enqueue_scripts', function () use ($dir): void {
       wp_deregister_script('jquery');
       wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], false, true);
       wp_enqueue_script('scripts', $dir . '/assets/js/scripts.js', ['jquery'], $this::VERSION, true);
@@ -65,17 +66,17 @@ class App
     });
 
     // 管理画面CSS
-    add_action('admin_enqueue_scripts', function () use ($dir) {
+    add_action('admin_enqueue_scripts', function () use ($dir): void {
       wp_enqueue_style('admin', $dir . '/assets/admin/admin.css', false, $this::VERSION);
     });
 
     // ログイン画面CSS
-    add_action('login_enqueue_scripts', function () use ($dir) {
+    add_action('login_enqueue_scripts', function () use ($dir): void {
       wp_enqueue_style('admin', $dir . '/assets/admin/admin.css', false, $this::VERSION);
     });
 
     // 管理画面JS
-    add_action('admin_enqueue_scripts', function () use ($dir) {
+    add_action('admin_enqueue_scripts', function () use ($dir): void {
       wp_enqueue_media();
       wp_deregister_script('jquery');
       wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], false, true);

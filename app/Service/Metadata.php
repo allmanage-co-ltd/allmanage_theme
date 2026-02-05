@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Helper;
+namespace App\Service;
+
+use App\Helper\Config;
 
 /**-----------------------------------
  *

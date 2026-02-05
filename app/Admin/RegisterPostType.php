@@ -1,26 +1,23 @@
 <?php
 
-namespace App\Helper;
+namespace App\Admin;
 
 /**-----------------------------------
  *
  *----------------------------------*/
-class Config
+class RegisterPostType
 {
   public function __construct() {}
 
   /**
    *
    */
-  public static function get(string $key): mixed
+  public function boot(): void
   {
-    return '';
+    //
   }
 
-  /**
-   *
-   */
-  private function array_get()
+  public function register(): void
   {
     //
   }

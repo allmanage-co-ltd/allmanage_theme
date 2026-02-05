@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Hook;
+namespace App\Service;
 
 /**-----------------------------------
  *
  *----------------------------------*/
 
-class ACFHook
+class MyWpQuery
 {
   public function __construct() {}
 
   /**
    *
    */
-  public function boot(): void
+  public function new(): \WP_Query
   {
-    //
+    $query = new \WP_Query();
+    return $query;
   }
 }
