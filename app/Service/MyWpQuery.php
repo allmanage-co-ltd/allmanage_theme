@@ -5,17 +5,16 @@ namespace App\Service;
 /**-----------------------------------
  *
  *----------------------------------*/
-
-class MyWpQuery
+class MyWpQuery extends Service
 {
-  public function __construct() {}
+    public function __construct() {}
 
-  /**
-   *
-   */
-  public function new(): \WP_Query
-  {
-    $query = new \WP_Query();
-    return $query;
-  }
+    /**
+     *
+     */
+    public function new(): \WP_Query
+    {
+        $query = new \WP_Query();
+        return $query;
+    }
 }

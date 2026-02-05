@@ -1,0 +1,4 @@
+[2026-02-05T15:55:47.745237+00:00] app.INFO: test ["http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/style.css","http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/include.css"] []
+[2026-02-05T16:29:49.503127+00:00] app.INFO: test ["http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/style.css","http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/include.css"] []
+[2026-02-05T16:29:58.377211+00:00] app.INFO: test ["http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/style.css","http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/include.css"] []
+[2026-02-05T16:31:19.438774+00:00] app.INFO: test ["http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/style.css","http://my-theme.local/wp-content/themes/allmanage_theme//assets/css/include.css"] []

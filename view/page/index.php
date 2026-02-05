@@ -1,23 +1,11 @@
-<?php
-get_header();
-
-?>
-
 <main class="p-home">
 
-  <div class="p-home_kv">
+    <?php
+    echo url('company');
 
-  </div>
+    echo config('seo.sitename');
 
-  <section class="">
-    <div class="c-inner">
-
-    </div>
-  </section>
+    logger('info', 'test', config('assets.css'));
+    ?>
 
 </main>
-
-<?php
-get_footer();
-
-?>

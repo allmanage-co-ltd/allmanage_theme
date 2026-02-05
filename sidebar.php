@@ -1,3 +1,1 @@
-<aside class="l-sidebar">
-
-</aside>
+<?php component('sidebar');

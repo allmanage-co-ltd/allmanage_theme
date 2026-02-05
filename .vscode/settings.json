@@ -3,12 +3,12 @@
     {
       "format": "expanded",
       "extensionName": ".css",
-      "savePath": "/style/css"
+      "savePath": "/assets/css"
     }
   ],
   "liveSassCompile.settings.includeItems": [
-    "/style/scss/style.scss",
-    // "/style/inc/include.scss"
+    "/assets/scss/style.scss",
+    // "/assets/inc/include.scss"
   ],
   "editor.detectIndentation": false,
   "editor.insertSpaces": true,
