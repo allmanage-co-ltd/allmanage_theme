@@ -1,7 +1,0 @@
-body:not(.home) {
-  transition: padding-top 0.2s ease;
-}
-
-body.js-header-ready:not(.home) {
-  padding-top: var(--header-height) !important;
-}

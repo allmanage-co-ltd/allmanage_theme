@@ -2,5 +2,13 @@
 
 declare(strict_types=1);
 
-require_once locate_template('func/init.php');
-require_once locate_template('dashboard/init.php');
+use App\App;
+
+/**-----------------------------------
+ * ここはエントリーポイントのみ。
+ * 全ての機能は app/ で管理。
+ *----------------------------------*/
+require_once __DIR__ . '/vendor/autoload.php';
+
+$app = new App();
+$app->boot();

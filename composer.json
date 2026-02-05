@@ -13,5 +13,11 @@
     "analyse": "vendor/bin/phpstan analyse",
     "rector": "vendor/bin/rector process --dry-run",
     "rector:fix": "vendor/bin/rector process"
-  }
+  },
+  "psr-4": {
+    "App\\": "app/"
+  },
+  "files": [
+    "app/helpers.php"
+  ]
 }

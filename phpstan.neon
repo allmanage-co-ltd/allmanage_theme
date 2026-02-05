@@ -1,28 +1,15 @@
 parameters:
-  level: 1
-  paths:
-    - .
-  excludePaths:
-    - vendor/*
-    - wp-admin/*
-    - wp-includes/*
-    - wp-content/plugins/*
-    - wp-content/themes/*/vendor/*
-    - node_modules/*
-    - tests/*
-  bootstrapFiles:
-    - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
-  ignoreErrors:
-    - '#Function [a-zA-Z0-9\\_]+\(\) has no return type specified.#'
-    - '#Variable \$[a-zA-Z0-9\\_]+ might not be defined.#'
-    - '#Call to static method [a-zA-Z0-9\\_]+\(\) on an unknown class [a-zA-Z0-9\\_]+.#'
-    - '#Access to an undefined property#'
-    - '#Call to an undefined method#'
-    - '#Function apply_filters invoked with [0-9]+ parameters, 2 required.#'
-    - '#Function do_action invoked with [0-9]+ parameters, 1 required.#'
-  checkMissingIterableValueType: false
-  treatPhpDocTypesAsCertain: false
-  reportUnmatchedIgnoredErrors: false
-
-includes:
-    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+    level: 8
+    paths:
+        - app
+    excludePaths:
+        - vendor
+        - node_modules
+    ignoreErrors:
+        - '#Function get_field not found#'
+        - '#Function the_field not found#'
+        - '#Function get_fields not found#'
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+    wordpress:
+        # ACFスタブ追加
