@@ -7,6 +7,10 @@ namespace App\Admin;
  *----------------------------------*/
 abstract class Admin
 {
-    abstract public function __construct();
-    abstract public function boot(): void;
+  public function __construct()
+  {
+    //
+  }
+
+  abstract public function boot(): void;
 }

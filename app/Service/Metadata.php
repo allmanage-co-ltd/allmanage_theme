@@ -20,15 +20,15 @@ class Metadata extends Service
     $favicon = Config::get('seo.favicon') ?? '/favicon.ico';
 
     return <<<HTML
-            <meta name="author" content="allmanage">
+      <meta name="author" content="allmanage">
 
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-            <meta name="format-detection" content="telephone=no">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="format-detection" content="telephone=no">
 
-            <link rel="icon" href="{$img_dir}{$favicon}">
-            <link rel="apple-touch-icon" href="{$img_dir}/apple-touch-icon.png">
-        HTML;
+      <link rel="icon" href="{$img_dir}{$favicon}">
+      <link rel="apple-touch-icon" href="{$img_dir}/apple-touch-icon.png">
+    HTML;
   }
 
   /**

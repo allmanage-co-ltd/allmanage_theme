@@ -11,6 +11,10 @@ namespace App\Service;
  *----------------------------------*/
 abstract class Service
 {
-    abstract public function __construct();
-    // abstract public function boot(): void;
+  public function __construct()
+  {
+    //
+  }
+
+  // abstract public function boot(): void;
 }

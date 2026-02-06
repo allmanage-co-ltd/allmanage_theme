@@ -1,6 +1,7 @@
 <?php
 
 return [
+  //
   'news-cat' => [
     'post_type' => 'news',
     'label' => 'NEWSカテゴリー',
