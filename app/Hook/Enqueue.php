@@ -5,82 +5,93 @@ namespace App\Hook;
 use App\Service\Config;
 
 /**-----------------------------------
- *
+ * Enqueue Hook
  *----------------------------------*/
 class Enqueue extends Hook
 {
+  private string $version;
+
   public function __construct()
   {
     $this->version = (string) Config::get('assets.version', '1.0.0');
   }
-
-  //
-  private string $version;
 
   /**
    *
    */
   public function boot(): void
   {
-    add_action('wp_enqueue_scripts', [$this, 'front_css']);
-    add_action('wp_enqueue_scripts', [$this, 'front_js']);
-    add_action('admin_enqueue_scripts', [$this, 'admin_css']);
-    add_action('login_enqueue_scripts', [$this, 'admin_css']);
-    add_action('admin_enqueue_scripts', [$this, 'admin_js']);
+    add_action('wp_enqueue_scripts', [$this, 'enqueue_front']);
+    add_action('admin_enqueue_scripts', [$this, 'enqueue_admin']);
+    add_action('login_enqueue_scripts', [$this, 'enqueue_admin']);
   }
 
   /**
-   *
+   * フロント用アセット
    */
-  public function front_css(): void
+  public function enqueue_front(): void
   {
-    if (! Config::get('assets.css')) return;
-    foreach (Config::get('assets.css') as $css) {
-      wp_enqueue_style(basename($css), $css, [], $this->version);
-    }
+    $this->enqueue_jquery();
+    $this->enqueue_styles(Config::get('assets.css'));
+    $this->enqueue_scripts(Config::get('assets.js'));
   }
 
   /**
-   *
+   * 管理画面用アセット
    */
-  public function front_js(): void
-  {
-    if (Config::get('assets.jquery')) {
-      wp_deregister_script('jquery');
-      wp_enqueue_script('jquery', Config::get('assets.jquery'), [], false, true);
-    }
-
-    if (! Config::get('assets.js')) return;
-    foreach (Config::get('assets.js') as $js) {
-      wp_enqueue_script(basename($js), $js, ['jquery'], $this->version, true);
-    }
-  }
-
-  /**
-   *
-   */
-  public function admin_css(): void
-  {
-    if (! Config::get('assets.admin-css')) return;
-    foreach (Config::get('assets.admin-css') as $admin_css) {
-      wp_enqueue_script(basename($admin_css), $admin_css, [], $this->version, true);
-    }
-  }
-
-  /**
-   *
-   */
-  public function admin_js(): void
+  public function enqueue_admin(): void
   {
     wp_enqueue_media();
-    if (Config::get('assets.jquery')) {
-      wp_deregister_script('jquery');
-      wp_enqueue_script('jquery', Config::get('assets.jquery'), [], false, true);
-    }
 
-    if (! Config::get('assets.admin-js')) return;
-    foreach (Config::get('assets.admin-js') as $js) {
-      wp_enqueue_script(basename($js), $js, ['jquery'], $this->version, true);
+    $this->enqueue_jquery();
+    $this->enqueue_styles(Config::get('assets.admin-css'));
+    $this->enqueue_scripts(Config::get('assets.admin-js'));
+  }
+
+  /**
+   * jQuery差し替え
+   */
+  private function enqueue_jquery(): void
+  {
+    $jquery = Config::get('assets.jquery');
+    if (! $jquery) return;
+
+    wp_deregister_script('jquery');
+    wp_enqueue_script('jquery', $jquery, [], null, true);
+  }
+
+  /**
+   * CSSまとめて登録
+   */
+  private function enqueue_styles(?array $styles): void
+  {
+    if (empty($styles)) return;
+
+    foreach ($styles as $handle => $src) {
+      wp_enqueue_style(
+        is_string($handle) ? $handle : md5($src),
+        $src,
+        [],
+        $this->version
+      );
+    }
+  }
+
+  /**
+   * JSまとめて登録
+   */
+  private function enqueue_scripts(?array $scripts): void
+  {
+    if (empty($scripts)) return;
+
+    foreach ($scripts as $handle => $src) {
+      wp_enqueue_script(
+        is_string($handle) ? $handle : md5($src),
+        $src,
+        ['jquery'],
+        $this->version,
+        true
+      );
     }
   }
 }
