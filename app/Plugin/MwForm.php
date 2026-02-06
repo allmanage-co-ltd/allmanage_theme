@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Hook;
+namespace App\Plugin;
 
 /**-----------------------------------
  *
  *----------------------------------*/
-class MwFormHook extends Hook
+class MwForm extends Plugin
 {
     public function __construct() {}
 

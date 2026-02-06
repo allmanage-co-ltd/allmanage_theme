@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Admin;
+namespace App\Hook;
 
 use App\Service\Metadata;
 
 /**-----------------------------------
  *
  *----------------------------------*/
-class Settings extends Admin
+class SetupTheme extends Hook
 {
     public function __construct() {}
 
