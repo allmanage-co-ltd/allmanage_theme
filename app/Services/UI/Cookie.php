@@ -12,17 +12,21 @@ namespace App\Services\UI;
  */
 class Cookie
 {
-  public function __construct()
+  private $days;
+  private $link;
+
+  public function __construct($days = 365, $link = '/privacy')
   {
-    //
+    $this->days = $days;
+    $this->link = $link;
   }
 
   /**
    * Cookie同意UIを生成する
    */
-  public static function render($days = 365, $link = '/privacy'): string
+  public function render(): string
   {
-    $link = htmlspecialchars($link, ENT_QUOTES, 'UTF-8');
+    $link = htmlspecialchars($this->link, ENT_QUOTES, 'UTF-8');
 
     // 使用するCookie名
     $cookie_name = 'cookie_consent';
@@ -47,8 +51,8 @@ class Cookie
      * - リロードして即座に表示状態を更新
      */
     if ($button_pressed) {
-      $expiry  = time() + ($days * 24 * 60 * 60);
-      $max_age = $days * 24 * 60 * 60;
+      $expiry  = time() + ($this->days * 24 * 60 * 60);
+      $max_age = $this->days * 24 * 60 * 60;
       @setcookie($cookie_name, $button_pressed, $expiry, '/');
       echo "<script>
       document.cookie = '{$cookie_name}={$button_pressed}; path=/; max-age={$max_age}';

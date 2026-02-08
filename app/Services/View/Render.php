@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\View;
 
 /**---------------------------------------------
  * ビュー描画サービス
@@ -8,7 +8,7 @@ namespace App\Services;
  * - WordPress の条件分岐を集約して表示ファイルを決定
  * - header / footer / 本体ビューの組み立てを一元管理
  */
-class Render extends Service
+class Render
 {
   public function __construct()
   {
@@ -18,7 +18,7 @@ class Render extends Service
   /**
    * コンポーネント描画
    */
-  public static function component(string $name, array $data = [])
+  public static function component(string $name, array $data = []): void
   {
     get_template_part("views/component/{$name}", $name, $data);
   }
@@ -26,9 +26,9 @@ class Render extends Service
   /**
    * レイアウト読み込み
    */
-  public static function layout(string $name): mixed
+  public static function layout(string $name): void
   {
-    return include_once theme_dir() . "/views/layout/{$name}.php";
+    get_template_part("views/layout/{$name}");
   }
 
   /**
@@ -38,7 +38,7 @@ class Render extends Service
    * - resolve() で決定したビューを中央に挿入
    * - 見つからない場合は 404 を表示
    */
-  public static function view(): void
+  public static function pages(): void
   {
     $header = theme_dir() . '/header.php';
     $footer = theme_dir() . '/footer.php';

@@ -149,7 +149,6 @@ class MwWpForm extends Plugin
     return $can;
   }
 
-
   /**
    * フォーム要素にクラスを追加
    */

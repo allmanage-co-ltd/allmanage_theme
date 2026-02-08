@@ -15,27 +15,6 @@
  *---------------------------------------------/
 
 /**
- * ロガー取得
- * slog()->info('message', $data) のように使う
- */
-function slog()
-{
-  return \App\Services\Logger::new();
-}
-
-/**
- * wpdbのラッパー
- * db()->stmt('...', [arg])->debug();    組み立てたSQLの出力のみ
- * db()->stmt('SELECT * FROM wp_posts WHERE ID = %d', [1])->get();
- * db()->stmt('...', [arg])->select();
- * db()->stmt('...', [arg])->execute();
- */
-function db(): \App\Databases\Database
-{
-  return \App\Databases\Database::new();
-}
-
-/**
  * サイトのルートURLを返す
  * WPの home_url() のラッパー
  */
@@ -61,7 +40,7 @@ function theme_dir(): string
 }
 
 /**
- * 画像ディレクトリURI
+ * 画像ディレクトリURI（末尾スラッシュなし）
  */
 function img_dir(): string
 {
@@ -70,7 +49,7 @@ function img_dir(): string
 
 /**
  * 設定値取得
- * config('site.name') のように使用
+ * echo config('site.name')
  */
 function config(string $key, $default = null)
 {
@@ -79,7 +58,7 @@ function config(string $key, $default = null)
 
 /**
  * permalink 設定からURL取得
- * url('news')
+ * echo url('news')
  */
 function url(string $slug): string
 {
@@ -88,8 +67,8 @@ function url(string $slug): string
 
 /**
  * WP_Query ビルダー取得
- * wpquery()->setPostType(...)->setPerPage(...)->build()
  * デバッグをするには->build()を呼ぶとargsの中身が見れる
+ * wpquery()->setPostType(...)->setPerPage(...)->build()
  */
 function wpquery(): \App\Services\MyWpQuery
 {
@@ -99,11 +78,33 @@ function wpquery(): \App\Services\MyWpQuery
 /**
  * flatpickrの初期化
  * js-datepickerクラスが付与されたテキストフィールドに対して
- * デートピッカーが自動で入れ込まれる
+ * デートピッカーが自動で入れ込まれる。有効にしたいページで関数を実行することで有効化。
  */
 function datepicker(array $options = [])
 {
   (new \App\Services\UI\Datepicker($options))->boot();
+}
+
+/**
+ * ロガー
+ * slog()->info('message', $data) >> logs/app.log
+ */
+function slog()
+{
+  return \App\Services\Logger::new();
+}
+
+/**
+ * wpdbのラッパー
+ * WPテーマではあまり使わなそう。。
+ * db()->stmt('...', [arg])->debug();        ←組み立てたSQLの出力のみ
+ * db()->stmt('SELECT * FROM wp_posts WHERE ID = %d', [1])->get();
+ * db()->stmt('...', [arg])->select();
+ * db()->stmt('...', [arg])->execute();
+ */
+function db(): \App\Databases\Database
+{
+  return \App\Databases\Database::new();
 }
 
 /**
@@ -114,7 +115,7 @@ function datepicker(array $options = [])
  */
 function the_view()
 {
-  return \App\Services\Render::view();
+  return \App\Services\View\Render::pages();
 }
 
 /**
@@ -123,7 +124,7 @@ function the_view()
  */
 function the_layout(string $name)
 {
-  return \App\Services\Render::layout($name);
+  return \App\Services\View\Render::layout($name);
 }
 
 /**
@@ -132,7 +133,7 @@ function the_layout(string $name)
  */
 function the_component(string $name, array $data = [])
 {
-  return \App\Services\Render::component($name, $data);
+  return \App\Services\View\Render::component($name, $data);
 }
 
 /**
@@ -141,7 +142,7 @@ function the_component(string $name, array $data = [])
  */
 function the_breadcrumb()
 {
-  echo (new \App\Services\UI\Breadcrumb)->build();
+  echo (new \App\Services\UI\Breadcrumb)->render();
 }
 
 /**
@@ -149,19 +150,16 @@ function the_breadcrumb()
  */
 function the_cookie_modal($days = 365, $link = '/privacy')
 {
-  echo \App\Services\UI\Cookie::render($days, $link);
+  echo (new \App\Services\UI\Cookie($days, $link))->render();
 }
 
 /**
  * ページネーション出力
- *
- * WP_Query を必ず渡す
- * メイン / カスタム / taxonomy 全対応
  * 吐き出すHTMLはpw_paginateと同じはず。。
  */
 function the_pagination(\WP_Query $query, int $range = 5)
 {
-  echo (new \App\Services\UI\Pagination($query, $range))->build();
+  echo (new \App\Services\UI\Pagination($query, $range))->render();
 }
 
 /**

@@ -21,7 +21,7 @@ class Breadcrumb
   /**
    * パンくずHTML生成
    */
-  public function build(): string
+  public function render(): string
   {
     if (is_home() || is_front_page() || is_admin())
       return '';

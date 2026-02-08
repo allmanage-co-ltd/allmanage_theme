@@ -47,7 +47,7 @@ class Pagination
    * - ページ数が1以下の場合は何も出力しない
    * - 前へ / 次へ / ページ番号リンクを組み立てる
    */
-  public function build(): string
+  public function render(): string
   {
     if ($this->pages <= 1) {
       return '';
