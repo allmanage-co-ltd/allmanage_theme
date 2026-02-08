@@ -1,15 +1,13 @@
 <?php
-$sq = get_search_query();
-if ($sq !== '') {
-  $query = wpquery()
-    ->setPostType(['news'])
-    ->setSearchQuery($sq)
-    ->setPerPage(10)
-    ->setOrderByDate()
-    // ->debug() // ->build()せずに組み立てたargsのみデバッグ
-    ->build()
-  ;
-}
+$sq    = get_search_query();
+$query = wpquery()
+  ->setPostType(['news'])
+  ->setSearchQuery($sq)
+  ->setPerPage(10)
+  ->setOrderByDate()
+  // ->debug() // ->build()せずに組み立てたargsのみデバッグ
+  ->build()
+;
 // slog()->info('test', [$query->build()]);
 // echo (int) $query->found_posts; // TOTAL
 ?>
