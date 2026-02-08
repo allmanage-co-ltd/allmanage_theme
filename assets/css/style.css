@@ -189,39 +189,14 @@ html {
 }
 
 body {
+  top: 0 !important;
   font-family: "Zen Kaku Gothic New", sans-serif;
   font-size: 1.6rem;
   font-weight: 500;
   color: #000000;
   line-height: 1.75;
-  padding-top: 7.5625em;
+  padding-top: var(--header-height);
   -webkit-font-smoothing: antialiased;
-}
-@media (max-width: 1599.9px) {
-  body {
-    padding-top: 6.8193em;
-  }
-}
-@media (max-width: 1399.9px) {
-  body {
-    padding-top: 6.489em;
-  }
-}
-@media (max-width: 991.9px) {
-  body {
-    font-size: 1.4rem;
-    padding-top: 5.7747em;
-  }
-}
-@media (max-width: 767.9px) {
-  body {
-    padding-top: 3.571em;
-  }
-}
-@media (max-width: 575.9px) {
-  body {
-    padding-top: 3.571em;
-  }
 }
 
 * {
@@ -3389,6 +3364,168 @@ textarea {
   .c-ttl_sec.-jp .c-ttl_sec__en {
     font-size: 1.6rem;
   }
+}
+
+.skiptranslate,
+.VIpgJd-ZVi9od-ORHb-OEVmcd .skiptranslate {
+  top: -100vh;
+}
+
+#google_translate_element {
+  position: absolute;
+  top: -100vh;
+  left: -300vw;
+  z-index: 999999;
+  background: red !important;
+  padding: 10px !important;
+}
+
+.skiptranslate {
+  display: none !important;
+}
+
+.cookie-consent {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90%, 800px);
+  background: #fff;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  z-index: 9999;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cookie-consent p span {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.cookie-consent p {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+}
+
+.cookie-consent a {
+  color: #000;
+  text-decoration: underline;
+}
+
+.cookie-consent a:hover {
+  color: #FC7231;
+}
+
+.cookie-consent button {
+  color: white;
+  border: none;
+  padding: 5px 30px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.cookie-consent button[name=accept_cookies] {
+  border-color: #FC7231;
+  background: #FC7231;
+}
+
+.cookie-consent button[name=accept_cookies]:hover {
+  background: #fff;
+  color: #FC7231;
+}
+
+.cookie-consent button[name=cancel_cookies] {
+  margin-left: 10px;
+  background: #666;
+  border-color: #666;
+}
+
+.cookie-consent button[name=cancel_cookies]:hover {
+  color: #666;
+  background: #fff;
+}
+
+@media (max-width: 600px) {
+  .cookie-consent {
+    bottom: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+  .cookie-consent button {
+    display: block;
+    width: 100%;
+    margin: 5px 0 !important;
+  }
+}
+.item-image {
+  position: relative;
+  cursor: pointer;
+}
+
+.item-image::before {
+  content: "拡大表示";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.69);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.4rem;
+  letter-spacing: 0.08rem;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.item-image:hover::before {
+  opacity: 1;
+}
+
+.item-image img {
+  cursor: pointer;
+  width: 100%;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-height: 80%;
+  max-width: 90%;
+  width: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.modal img.zoomed {
+  cursor: grab;
+  transition: none;
+  max-height: none;
+  max-width: none;
+}
+
+.modal img.dragging {
+  cursor: grabbing;
 }
 
 /*============================================

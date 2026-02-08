@@ -41,6 +41,7 @@ class Environment extends Service
       'localhost',
       '127.0.0.1',
       'web-checker',
+      '.local',
     ];
 
     foreach ($locals as $local) {

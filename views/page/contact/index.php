@@ -1,3 +1,5 @@
+<?php datepicker() ?>
+
 <main class="p-contact">
 
   <div class="p-kv_under">

@@ -6,6 +6,9 @@
         <img src="<?= img_dir(); ?>/logo.png" alt="<?= get_bloginfo('name'); ?>">
       </div>
       <div class="l-gnavi__navi">
+
+        <?php the_component('translate') ?>
+
         <nav class="l-gnavi__menu">
           <ul class="l-gnavi__list">
             <li class="l-gnavi__item">
@@ -13,6 +16,9 @@
             </li>
             <li class="l-gnavi__item">
               <a href="<?= url('news') ?>" class="l-gnavi__link">NEWS</a>
+            </li>
+            <li class="l-gnavi__item">
+              <a href="<?= url('contact') ?>" class="l-gnavi__link">CONTACT</a>
             </li>
           </ul>
         </nav>

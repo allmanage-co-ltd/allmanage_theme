@@ -97,6 +97,16 @@ function wpquery(): \App\Services\MyWpQuery
 }
 
 /**
+ * flatpickrの初期化
+ * js-datepickerクラスが付与されたテキストフィールドに対して
+ * デートピッカーが自動で入れ込まれる
+ */
+function datepicker(array $options = [])
+{
+  (new \App\Services\UI\Datepicker($options))->boot();
+}
+
+/**
  * ビューの描画
  * header → view → footer を一括で処理
  * ページ、アーカイブ、タクソノミー、シングル、サーチを
@@ -135,11 +145,19 @@ function the_breadcrumb()
 }
 
 /**
+ * Cookieのモーダル表示
+ */
+function the_cookie_modal($days = 365, $link = '/privacy')
+{
+  echo \App\Services\UI\Cookie::render($days, $link);
+}
+
+/**
  * ページネーション出力
  *
  * WP_Query を必ず渡す
  * メイン / カスタム / taxonomy 全対応
- * 種強くHTMLはpw_paginateと同じはず。。
+ * 吐き出すHTMLはpw_paginateと同じはず。。
  */
 function the_pagination(\WP_Query $query, int $range = 5)
 {

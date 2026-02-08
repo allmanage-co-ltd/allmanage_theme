@@ -30,8 +30,8 @@ class MwWpForm extends Plugin
     add_filter('mwform_default_content', [$this, 'defaultContent']);
     add_filter('mwform_default_settings', [$this, 'defaultSettings'], 10, 2);
     add_filter('mwform_custom_mail_tag', [$this, 'tag'], 10, 3);
-    add_action('wp_footer', [$this, 'footerScript']);
-    add_action('wp_print_footer_scripts', [$this, 'appendFormClass']);
+    add_action('wp_footer', [$this, 'footerScript'], 9999);
+    add_action('wp_print_footer_scripts', [$this, 'appendFormClass'], 9999);
     add_filter('user_can_richedit', [$this, 'disableVisualEditor']);
     add_action('load-post.php', [$this, 'disableVisualEditor']);
     add_action('load-post-new.php', [$this, 'disableVisualEditor']);
@@ -157,7 +157,9 @@ class MwWpForm extends Plugin
   {
     echo <<<HTML
     <script>
-        jQuery('.mw_wp_form form').addClass('h-adr')
+      if ($('.mw_wp_form'.length)){
+        $('.mw_wp_form form').addClass('h-adr')
+      }
     </script>
     HTML;
   }
@@ -279,193 +281,192 @@ EOT;
   {
     ob_start();
     echo <<<HTML
-        <div class="c-form__head">
+<p class="p-country-name" style="display:none!important">Japan</p>
+<div class="c-form__head">
 
-        </div>
-        <div class="c-form__body">
-            <table class="c-form__sheet">
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>お名前</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_text name="your_name" class="c-form__input -text -middle"
-                                show_error="false"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_name"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>フリガナ</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_text name="your_name_kana" class="c-form__input -text -middle"
-                                show_error="false"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_name_kana"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>お名前</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_text name="your_name01" class="c-form__input -text -half"
-                                show_error="false" placeholder="姓"][mwform_text name="your_name02" class="c-form__input -text
-                                -half" show_error="false" placeholder="名"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_name01,your_name02"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>フリガナ</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_text name="your_name_kana01" class="c-form__input -text -half"
-                                show_error="false" placeholder="セイ"][mwform_text name="your_name_kana02" class="c-form__input
-                                -text -half" show_error="false" placeholder="メイ"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_name_kana01,your_name_kana02"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>性別</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_radio name="your_gender" class="c-form__radio" children="男性,女性"
-                                value="男性" show_error="false"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_gender"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>電話番号</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_text name="your_tel" class="c-form__input -text -short"
-                                show_error="false"]</div>
-                        </div>
-                        <div class="c-form__notes">ハイフンなしで入力してください</div>
-                        <div class="c-form__error">[mwform_error keys="your_tel"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>ご住所</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <table class="c-form__rowgroup h-adr">
-                                <tr>
-                                    <th>
-                                        <div class="c-form__ttl">郵便番号</div>
-                                    </th>
-                                    <td>
-                                        <div class="c-form__field">〒[mwform_text name="your_postal" class="p-postal-code
-                                            c-form__input -text" show_error="false" size="8"]</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <div class="c-form__ttl">都道府県</div>
-                                    </th>
-                                    <td>
-                                        <div class="c-form__field">
-                                            <span class="p-country-name" style="display:none;">Japan</span>
-                                            [mwform_select name="your_pref"
-                                            children=":--,北海道,青森県,岩手県,宮城県,秋田県,山形県,福島県,茨城県,栃木県,群馬県,埼玉県,千葉県,東京都,神奈川県,新潟県,富山県,石川県,福井県,山梨県,長野県,岐阜県,静岡県,愛知県,三重県,滋賀県,京都府,大阪府,兵庫県,奈良県,和歌山県,鳥取県,島根県,岡山県,広島県,山口県,徳島県,香川県,愛媛県,高知県,福岡県,佐賀県,長崎県,熊本県,大分県,宮崎県,鹿児島県,沖縄県"
-                                            class="p-region c-form__select" show_error="false"]
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <div class="c-form__ttl">市区町村・番地</div>
-                                    </th>
-                                    <td>
-                                        <div class="c-form__field">[mwform_text name="your_locality" class="p-locality
-                                            p-street-address c-form__input -text -long" show_error="false"]</div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <div class="c-form__ttl">ビル・マンション名</div>
-                                    </th>
-                                    <td>
-                                        <div class="c-form__field">[mwform_text name="your_exaddress" class="p-extended-address
-                                            c-form__input -text -long" show_error="false"]</div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_postal,your_pref,your_locality"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>メールアドレス</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_email name="your_mail" class="c-form__input -text -middle"
-                                show_error="false"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_mail"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>HPをご覧になったきっかけ</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_checkbox name="your_trigger" class="c-form__check"
-                                children="ホームズ,SUUMO,友達の紹介,チラシ・パンフレット" separator="," show_error="false"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_trigger"]</div>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        <div class="c-form__ttl -required"><span>お問い合わせ内容</span></div>
-                    </th>
-                    <td>
-                        <div class="c-form__row">
-                            <div class="c-form__field">[mwform_textarea name="your_inquiry" class="c-form__input -textarea
-                                -long" show_error="false"]</div>
-                        </div>
-                        <div class="c-form__error">[mwform_error keys="your_inquiry"]</div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div class="c-form__foot">
-            <div class="c-form__privacy">
-                [myphp file=inc/module/block/privacy]
-                <div class="c-form__agreement">
-                    <div class="c-form__check">[mwform_checkbox name="your_agreement" children="同意する" separator=","
-                        show_error="false" class="c-form__check"]</div>
+</div>
+<div class="c-form__body">
+    <table class="c-form__sheet">
+        <tr>
+            <th>
+                <div class="c-form__ttl"><span>ご来社日時</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_text name="your_date" class="c-form__input -text -middle js-datepicker" show_error="false"]</div>
                 </div>
-            </div>
-            <div class="u-ta_center">[mwform_error keys="your_agreement"]</div>
-            <div class="u-ta_center">[mwform_hidden name="recaptcha-v3" value="false"][mwform_error keys="recaptcha-v3"]</div>
-            <div class="c-form__button">
-                [mwform_bsubmit name="btn_submit" class="c-form__btn" value="submit"]送信する[/mwform_bsubmit]
-                [mwform_bconfirm class="c-form__btn" value="confirm"]確認画面へ[/mwform_bconfirm]
-                [mwform_bback class="c-form__btn -back" value="back"]戻る[/mwform_bback]
-            </div>
+                <div class="c-form__error">[mwform_error keys="your_date"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>お名前</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_text name="your_name" class="c-form__input -text -middle" show_error="false"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_name"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>フリガナ</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_text name="your_name_kana" class="c-form__input -text -middle" show_error="false"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_name_kana"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>お名前</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_text name="your_name01" class="c-form__input -text -half" show_error="false" placeholder="姓"][mwform_text name="your_name02" class="c-form__input -text -half" show_error="false" placeholder="名"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_name01,your_name02"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>フリガナ</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">
+                      [mwform_text name="your_name_kana01" class="c-form__input -text -half"  show_error="false" placeholder="セイ"]
+                      [mwform_text name="your_name_kana02" class="c-form__input -text -half" show_error="false" placeholder="メイ"]
+                    </div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_name_kana01,your_name_kana02"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>性別</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_radio name="your_gender" class="c-form__radio" children="男性,女性"  value="男性" show_error="false"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_gender"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>電話番号</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_text name="your_tel" class="c-form__input -text -short" show_error="false"]</div>
+                </div>
+                <div class="c-form__notes">ハイフンなしで入力してください</div>
+                <div class="c-form__error">[mwform_error keys="your_tel"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>ご住所</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <table class="c-form__rowgroup h-adr">
+                        <tr>
+                            <th>
+                                <div class="c-form__ttl">郵便番号</div>
+                            </th>
+                            <td>
+                                <div class="c-form__field">
+                                  〒[mwform_text name="your_postal" class="p-postal-code c-form__input -text"  show_error="false" size="8"]
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="c-form__ttl">都道府県</div>
+                            </th>
+                            <td>
+                                <div class="c-form__field">
+                                    <span class="p-country-name" style="display:none;">Japan</span>
+                                    [mwform_select name="your_pref" children=":--,北海道,青森県,岩手県,宮城県,秋田県,山形県,福島県,茨城県,栃木県,群馬県,埼玉県,千葉県,東京都,神奈川県,新潟県,富山県,石川県,福井県,山梨県,長野県,岐阜県,静岡県,愛知県,三重県,滋賀県,京都府,大阪府,兵庫県,奈良県,和歌山県,鳥取県,島根県,岡山県,広島県,山口県,徳島県,香川県,愛媛県,高知県,福岡県,佐賀県,長崎県,熊本県,大分県,宮崎県,鹿児島県,沖縄県" class="p-region c-form__select" show_error="false"]
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="c-form__ttl">市区町村・番地</div>
+                            </th>
+                            <td>
+                                <div class="c-form__field">[mwform_text name="your_locality" class="p-locality p-street-address c-form__input -text -long" show_error="false"]</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="c-form__ttl">ビル・マンション名</div>
+                            </th>
+                            <td>
+                                <div class="c-form__field">[mwform_text name="your_exaddress" class="p-extended-address c-form__input -text -long" show_error="false"]</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_postal,your_pref,your_locality"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>メールアドレス</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_email name="your_mail" class="c-form__input -text -middle" show_error="false"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_mail"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>HPをご覧になったきっかけ</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_checkbox name="your_trigger" class="c-form__check" children="ホームズ,SUUMO,友達の紹介,チラシ・パンフレット" separator="," show_error="false"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_trigger"]</div>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                <div class="c-form__ttl -required"><span>お問い合わせ内容</span></div>
+            </th>
+            <td>
+                <div class="c-form__row">
+                    <div class="c-form__field">[mwform_textarea name="your_inquiry" class="c-form__input -textarea -long" show_error="false"]</div>
+                </div>
+                <div class="c-form__error">[mwform_error keys="your_inquiry"]</div>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="c-form__foot">
+    <div class="c-form__privacy">
+        <div class="c-form__agreement">
+            [mwform_checkbox name="your_agreement" children="同意する" separator="," show_error="false" class="c-form__check"]
         </div>
-        HTML;
+    </div>
+    <div class="u-ta_center">[mwform_error keys="your_agreement"]</div>
+    <div class="u-ta_center">[mwform_hidden name="recaptcha-v3" value="false"][mwform_error keys="recaptcha-v3"]</div>
+    <div class="c-form__button">
+        [mwform_bsubmit name="btn_submit" class="c-form__btn c-btn -submit" value="submit"]送信する[/mwform_bsubmit]
+        [mwform_bconfirm class="c-form__btn c-btn -confirm" value="confirm"]確認画面へ[/mwform_bconfirm]
+        [mwform_bback class="c-form__btn c-btn -back" value="back"]戻る[/mwform_bback]
+    </div>
+</div>
+HTML;
     return ob_get_clean();
   }
 }

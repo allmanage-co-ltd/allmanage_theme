@@ -20,5 +20,10 @@ if (is_local()) {
 <main class="p-home">
   <div class="c-inner">
     <?php the_component('searchform') ?>
+
+    <div class="item-image">
+      <img src="<?= img_dir() ?>/logo.png" alt="">
+    </div>
+
   </div>
 </main>

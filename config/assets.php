@@ -7,12 +7,12 @@ return [
   'version'   => '1.0.0',
 
   // フロント・管理画面で共通。無しの場合はデフォルトが読み込まれる
-  'jquery'    => 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js',
+  'jquery'    => 'https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js',
 
   // フロントCSS
   'css'       => [
     // 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css',
-    // 'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
+    'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
     // 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
     // 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css',
     // 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css',
@@ -24,8 +24,8 @@ return [
 
   // フロントJS
   'js'        => [
-    // 'https://cdn.jsdelivr.net/npm/flatpickr',
-    // 'https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js',
+    'https://cdn.jsdelivr.net/npm/flatpickr',
+    'https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js',
     // 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
     // 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js',
     // 'https://cdn.tailwindcss.com?plugins=typography',

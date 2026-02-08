@@ -239,7 +239,7 @@ class Metadata extends Service
   {
     $gtags = Config::get('seo.gtags');
 
-    if (!empty($gtags)) {
+    if (!empty($gtags && !is_local())) {
       foreach ($gtags as $gtag) {
         return <<<HTML
 

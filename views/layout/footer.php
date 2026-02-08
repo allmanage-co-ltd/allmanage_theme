@@ -1,5 +1,6 @@
     <?php
-    // the_layout('footer-contact');
+    the_layout('footer-contact');
+    the_cookie_modal();
     ?>
 
     <footer class="l-footer">
