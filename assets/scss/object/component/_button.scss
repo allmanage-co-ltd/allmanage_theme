@@ -11,7 +11,7 @@
   }
 
   &.-col {
-    > * + * {
+    >*+* {
       margin-left: 2em;
     }
   }
@@ -23,13 +23,14 @@
       margin-top: 3em;
     }
   }
+
   @include mq(xs) {
     &.-col {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      > * + * {
+      >*+* {
         margin-top: 1.5em;
         margin-left: 0;
       }
@@ -41,7 +42,7 @@
   button
 --------------------------------------------*/
 .c-btn {
-  $amp:&;
+  $amp: &;
   display: block;
   color: #fff;
   background: $main;
@@ -53,10 +54,12 @@
   max-width: 20rem;
   border-radius: 3rem;
   position: relative;
-  span{
+
+  span {
     display: inline-block;
     padding-right: 2rem;
     position: relative;
+
     &:before {
       content: '';
       width: 7px;
@@ -65,52 +68,55 @@
       top: 50%;
       transform: translateY(-50%);
       right: 0;
-      background: url(../../img/common/icon_arrow.svg);
+      background: url(../../assets/img/icon_arrow.svg);
       transition: 0.4s;
     }
   }
-  
-  @include mq(sm-){
-    &:hover{
+
+  @include mq(sm-) {
+    &:hover {
       background: #fff;
       color: $main;
-      span{
+
+      span {
         &:before {
-          background-image: url(../../img/common/icon_arrow_or.svg);
+          background-image: url(../../assets/img/icon_arrow_or.svg);
         }
       }
     }
   }
-  &.-sm{
+
+  &.-sm {
     max-width: 18rem;
   }
+
   &.-center {
     margin: 0 auto;
   }
 
-  &.-white{
+  &.-white {
     background: #fff;
     color: $font;
     border-color: #fff;
-    @include mq(sm-){
-      &:hover{
+
+    @include mq(sm-) {
+      &:hover {
         background: $main;
         color: #fff;
         border-color: $main;
       }
     }
   }
-  
+
   @include mq(sm) {
-    &__icon {
-    }
-    &__arrow {
-    }
+    &__icon {}
+
+    &__arrow {}
   }
-  @include mq(xs) {
-  }
-  @include mq(ss) {
-  }
+
+  @include mq(xs) {}
+
+  @include mq(ss) {}
 }
 
 /*--------------------------------------------
@@ -126,12 +132,15 @@
   position: relative;
   display: block;
   text-align: center;
+
   &.-center {
     margin: 0 auto;
   }
+
   &.-right {
     margin-left: auto;
   }
+
   &:before {
     content: '';
     width: 7px;
@@ -143,11 +152,13 @@
     top: 50%;
     transform: translateY(-50%) rotate(45deg);
   }
+
   @include mq(sm-) {
     &:hover {
       color: $point;
     }
   }
+
   @include mq(xs) {
     padding: 1.5em 0;
   }
@@ -203,6 +214,7 @@
     padding: 0.8em;
     font-size: 2rem;
   }
+
   @include mq(xs) {
     min-height: 8rem;
     font-size: 1.8rem;

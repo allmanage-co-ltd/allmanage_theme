@@ -1,25 +1,29 @@
 /*--------------------------------------------
   search
 --------------------------------------------*/
-.c-search_keyword{
+.c-search_keyword {
   display: flex;
   align-items: center;
   justify-content: center;
-  &__txt{
+
+  &__txt {
     color: #fff;
     font-size: 1.8rem;
     margin-right: 2.3rem;
     font-weight: 700;
   }
-  &__input{
+
+  &__input {
     position: relative;
-    input{
+
+    input {
       width: 600px;
       background: #fff;
       border-radius: 30px;
       padding: 1.15em;
     }
-    button{
+
+    button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -27,23 +31,28 @@
       width: 2rem;
       height: 2rem;
       padding: 0;
-      .icon{
+
+      .icon {
         width: 2rem;
         height: 2rem;
         fill: $main;
       }
     }
   }
-  @include mq(xs){
+
+  @include mq(xs) {
     display: block;
-    &__txt{
+
+    &__txt {
       font-size: 1.6rem;
       margin-left: 0;
       margin-bottom: 1rem;
     }
-    &__input{
+
+    &__input {
       width: 100%;
-      input{
+
+      input {
         width: 100%;
       }
     }
@@ -52,56 +61,68 @@
 
 
 .c-search_filter {
-  $amp:&;
-  &__wrap{
+  $amp: &;
+
+  &__wrap {
     display: flex;
     flex-wrap: wrap;
   }
-  &__item{
+
+  &__item {
     width: 50%;
     display: flex;
     align-items: center;
     color: $main;
-    &:nth-child(n+3){
+
+    &:nth-child(n+3) {
       margin-top: 3rem;
     }
   }
-  &__name{
+
+  &__name {
     width: 5.6875em;
     color: $main;
     font-weight: 700;
-    &.-lg{
+
+    &.-lg {
       width: 7.1875em;
     }
   }
-  &__fieldWrap{
+
+  &__fieldWrap {
     display: flex;
     align-items: center;
-    #{$amp}__field{
+
+    #{$amp}__field {
       display: flex;
       align-items: center;
-      +#{$amp}__field{
+
+      +#{$amp}__field {
         margin-left: 1rem;
       }
     }
   }
-  &__field{
-    
-    select{
+
+  &__field {
+
+    select {
       background: #fff;
       border-radius: 3rem;
       color: $main;
       width: 270px;
       border: none;
       appearance: none;
-      &.sm{
+
+      &.sm {
         width: 150px;
         margin-right: 1rem;
       }
     }
   }
-  &__select{
+
+  &__select {
     position: relative;
+
     &:before {
       content: '';
       width: 1.5rem;
@@ -110,38 +131,45 @@
       top: 50%;
       transform: translateY(-50%);
       right: 3rem;
-      background: url(../../img/common/icon_chevron.svg) no-repeat center / contain;
+      background: url(../../assets/img/icon_chevron.svg) no-repeat center / contain;
     }
   }
-  &__txt{
+
+  &__txt {
     font-weight: 500;
   }
-  &__btnWrap{
+
+  &__btnWrap {
     display: flex;
     justify-content: center;
     margin-top: 4rem;
   }
-  &__btn{
+
+  &__btn {
     margin: 0 1.25rem;
-    .btn{
+
+    .btn {
       font-weight: 700;
       line-height: 1;
       text-align: center;
       padding: 1em 0;
       border-radius: 5px;
       display: block;
-      @include mq(sm-){
+
+      @include mq(sm-) {
         font-size: 1.8rem;
       }
     }
-    &.-search{
-      .btn{
+
+    &.-search {
+      .btn {
         background: $main;
         color: #fff;
         border: 1px solid $main;
         width: 350px;
         position: relative;
-        .icon{
+
+        .icon {
           position: absolute;
           right: 2rem;
           top: 50%;
@@ -151,23 +179,27 @@
           height: 2rem;
           transition: 0.4s;
         }
-        @include mq(sm-){
-          &:hover{
+
+        @include mq(sm-) {
+          &:hover {
             background: #fff;
             color: $main;
-            .icon{
+
+            .icon {
               fill: $main;
             }
           }
         }
       }
     }
-    &.-clear{
-      .btn{
+
+    &.-clear {
+      .btn {
         background: #fff;
         border: 1px solid $main;
         color: $main;
         width: 270px;
+
         @include mq(sm-) {
           &:hover {
             background: $main;
@@ -177,54 +209,62 @@
       }
     }
   }
-  &__toggle{
 
-  }
-  @include mq(md){
-    &__field{
-      select{
-        &.sm{
+  &__toggle {}
+
+  @include mq(md) {
+    &__field {
+      select {
+        &.sm {
           width: 120px;
         }
       }
     }
   }
+
   @include mq(sm) {
-    &__wrap{
+    &__wrap {
       display: block;
     }
-    &__item{
+
+    &__item {
       width: 100%;
-      &:not(:first-child){
+
+      &:not(:first-child) {
         margin-top: 1.5rem;
       }
     }
+
     &__field {
       select {
         width: 30rem;
+
         &.sm {
           width: 13rem;
         }
       }
     }
-    &__name{
+
+    &__name {
       width: 7em;
-      &.-lg{
+
+      &.-lg {
         width: 7em;
       }
     }
-    &__btn{
 
-    }
+    &__btn {}
   }
-  @include mq(xs){
-    &__toggle{
+
+  @include mq(xs) {
+    &__toggle {
       color: $main;
       font-weight: 700;
       font-size: 1.6rem;
       position: relative;
       padding: 1.5rem 0;
-      span{
+
+      span {
         width: 1.5em;
         height: 1.5em;
         border-radius: 50%;
@@ -233,8 +273,9 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%);
+
         &:before,
-        &:after{
+        &:after {
           content: '';
           width: 0.8em;
           height: 2px;
@@ -247,59 +288,71 @@
           margin: auto;
           transition: 0.4s;
         }
-        &:after{
+
+        &:after {
           transform: rotate(90deg);
         }
       }
-      &.open{
-        span{
-          &:after{
+
+      &.open {
+        span {
+          &:after {
             transform: rotate(0);
           }
         }
       }
     }
-    &__form{
+
+    &__form {
       display: none;
     }
-    &__btnWrap{
+
+    &__btnWrap {
       flex-direction: column;
       align-items: center;
     }
-    &__btn{
-      &.-clear{
+
+    &__btn {
+      &.-clear {
         margin-top: 1.5rem;
       }
     }
-    &__select{
-      &:before{
+
+    &__select {
+      &:before {
         width: 1rem;
         height: 0.5em;
         right: 1.5rem;
       }
     }
   }
-  @include mq(ss){
-    &__item{
+
+  @include mq(ss) {
+    &__item {
       display: block;
     }
-    &__name{
+
+    &__name {
       margin-bottom: 0.5em;
       width: auto;
     }
-    &__field{
-      select{
+
+    &__field {
+      select {
         width: 100%;
-        &.sm{
+
+        &.sm {
           width: 11rem;
         }
       }
     }
-    &__btn{
-      &.-search{
+
+    &__btn {
+      &.-search {
         width: 100%;
       }
-      &.-clear{
+
+      &.-clear {
         width: 70%;
       }
     }

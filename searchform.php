@@ -1,6 +1,10 @@
-<div class="c-searchform">
-  <form method="get" id="searchform" action="<?= home(); ?>">
-    <input type="text" value="" name="s" class="s" id="s" placeholder="" />
-    <button type="submit" class="c-btn">検索</button>
-  </form>
-</div>
+<?php
+/**---------------------------------------------
+ * ビュー描画の起点
+ * ---------------------------------------------
+ * App\Services\Renderで表示制御していますので
+ * コーディング関連は全てviewsの中身を編集してください。
+ *
+ * ※テーマ直下のファイルは一切編集しないようにしています。
+ */
+the_component('searchform');

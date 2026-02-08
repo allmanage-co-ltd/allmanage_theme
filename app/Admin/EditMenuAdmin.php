@@ -2,35 +2,45 @@
 
 namespace App\Admin;
 
-/**-----------------------------------
- *
- *----------------------------------*/
+/**---------------------------------------------
+ * 管理者向け管理画面表示制御クラス
+ * ---------------------------------------------
+ * - administrator ロールのみを対象に処理を行う
+ * - 管理バーの表示を制御する
+ * - 表示制御ロジックを functions.php に書かない
+ */
 class EditMenuAdmin extends Admin
 {
-    public function __construct() {}
+  public function __construct()
+  {
+    //
+  }
 
-    /**
-     *
-     */
-    public function boot(): void
-    {
-        if (! $this->limited_role()) return;
-        $this->hidden_admin_bar();
+  /**
+   * 初期化処理
+   */
+  public function boot(): void
+  {
+    if (!$this->subjectRoles()) {
+      return;
     }
 
-    /**
-     *
-     */
-    public function limited_role(): bool
-    {
-        return current_user_can('administrator');
-    }
+    $this->hiddenAdminBar();
+  }
 
-    /**
-     *
-     */
-    public function hidden_admin_bar(): void
-    {
-        show_admin_bar(false);
-    }
+  /**
+   * 対象ユーザー判定
+   */
+  public function subjectRoles(): bool
+  {
+    return current_user_can('administrator');
+  }
+
+  /**
+   * 管理バー非表示処理
+   */
+  public function hiddenAdminBar(): void
+  {
+    show_admin_bar(false);
+  }
 }

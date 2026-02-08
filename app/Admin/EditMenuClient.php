@@ -2,128 +2,142 @@
 
 namespace App\Admin;
 
-/**-----------------------------------
- *
- *----------------------------------*/
+use App\Services\Config;
+
+/**---------------------------------------------
+ * 管理画面メニュー制御クラス（クライアント向け）
+ * ---------------------------------------------
+ * - 管理画面の表示メニューを権限別に制御する
+ * - editor 以下のユーザーを対象に UI を簡略化する
+ * - 制御内容は Config 設定により切り替える
+ * - functions.php に直接書かない
+ */
 class EditMenuClient extends Admin
 {
-    public function __construct() {}
+  private $hidden_client_menus;
+  private $visible_custom_menus;
+  private $opts;
 
-    // 表示するメニュー
-    private const VISIBLE_CUSTOM_MENUS = [
-        'post' => [
-            'news',
-            'works',
-            'products',
-            'case',
-        ],
-        'option' => [
-            'usc-e-shop/usc-e-shop.php', // ウェルカート
-            'usces_orderlist',           // ウェルカート
-        ],
-    ];
+  public function __construct()
+  {
+    $config                     = Config::get('admin.client_menu');
+    $this->hidden_client_menus  = $config['hidden'];
+    $this->visible_custom_menus = $config['visible'];
+    $this->opts                 = $config['default_option'];
+  }
 
-    /**
-     *
-     */
-    public function boot(): void
-    {
-        if (! $this->limited_role()) return;
-        add_action('admin_menu', [$this, 'remove_menus_for_editor'], 9999);
-        add_action('admin_init', [$this, 'hide_update_notice_for_editor']);
-        add_action('admin_bar_menu', [$this, 'customize_admin_bar_for_limited_users'], 9999);
+  /**
+   * 初期化処理
+   */
+  public function boot(): void
+  {
+    if (!$this->subjectRoles()) {
+      return;
     }
 
-    /**
-     *
-     */
-    public function limited_role(): bool
-    {
-        if (current_user_can('administrator')) {
-            return false;
+    add_action('admin_menu', [$this, 'removeMenusForEditor'], 9999);
+    add_action('admin_init', [$this, 'hideUpdateNoticeForEditor']);
+    add_action('admin_bar_menu', [$this, 'customizeAdminBarForLimitedUsers'], 9999);
+  }
+
+  /**
+   * 対象ユーザー判定
+   */
+  public function subjectRoles(): bool
+  {
+    if (current_user_can('administrator')) {
+      return false;
+    }
+
+    return current_user_can('editor')
+      || current_user_can('author')
+      || current_user_can('contributor')
+      || current_user_can('subscriber');
+  }
+
+  /**
+   * 管理画面メニューの制御
+   */
+  public function removeMenusForEditor()
+  {
+    $hidden_menus  = $this->hidden_client_menus;
+    $visible_menus = $this->visible_custom_menus;
+
+    // カスタム投稿タイプのメニューを許可対象に追加
+    if (!empty($visible_menus['post_type'])) {
+      foreach ($visible_menus['post_type'] as $post_type) {
+        $hidden_menus[] = 'edit.php?post_type=' . $post_type;
+      }
+    }
+
+    // オプションページのメニューを許可対象に追加
+    if (!empty($visible_menus['option'])) {
+      foreach ($visible_menus['option'] as $option_page) {
+        $hidden_menus[] = $option_page;
+      }
+    }
+
+    global $menu;
+
+    foreach ($menu as $key => $value) {
+      $menu_slug = $value[2];
+      $keep      = in_array($menu_slug, $hidden_menus);
+
+      // サブメニューに許可項目がある場合は保持する
+      if (!$keep && !empty($GLOBALS['submenu'][$menu_slug])) {
+        foreach ($GLOBALS['submenu'][$menu_slug] as $submenu_item) {
+          if (in_array($submenu_item[2], $hidden_menus)) {
+            $keep = true;
+            break;
+          }
         }
+      }
 
-        return current_user_can('editor') ||
-            current_user_can('author') ||
-            current_user_can('contributor') ||
-            current_user_can('subscriber');
+      if (!$keep) {
+        remove_menu_page($menu_slug);
+      }
     }
 
-    /**
-     *
-     */
-    public function remove_menus_for_editor()
-    {
-        // デフォルト表示メニューから除外
-        $allowedMenus = [
-            'index.php',                  // ダッシュボード
-            // 'edit.php',                   // 投稿
-            'upload.php',                 // メディア
-            'profile.php',                // プロフィール
-        ];
-
-        $customMenus = self::VISIBLE_CUSTOM_MENUS;
-
-        // カスタム投稿のメニューを追加
-        if (!empty($customMenus['post'])) {
-            foreach ($customMenus['post'] as $postType) {
-                $allowedMenus[] = 'edit.php?post_type=' . $postType;
-            }
-        }
-
-        // オプションページのメニューを追加
-        if (!empty($customMenus['option'])) {
-            foreach ($customMenus['option'] as $optionPage) {
-                $allowedMenus[] =  $optionPage;
-            }
-        }
-
-        global $menu;
-        foreach ($menu as $key => $value) {
-            $menu_slug = $value[2];
-            $keep = in_array($menu_slug, $allowedMenus);
-
-            // サブメニューがあり、いずれかが許可されてる場合も keep にする
-            if (!$keep && !empty($GLOBALS['submenu'][$menu_slug])) {
-                foreach ($GLOBALS['submenu'][$menu_slug] as $submenu_item) {
-                    $submenu_slug = $submenu_item[2];
-                    if (in_array($submenu_slug, $allowedMenus)) {
-                        $keep = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!$keep) {
-                remove_menu_page($menu_slug);
-            }
-        }
-
-        // ダッシュボードから指定のボックスを削除
-        remove_meta_box('dashboard_site_health', 'dashboard', 'normal');    // サイトヘルスステータス
-        remove_meta_box('dashboard_right_now', 'dashboard', 'normal');      // 概要
-        // remove_meta_box('dashboard_activity', 'dashboard', 'normal');       // アクティビティ
-        // remove_meta_box('dashboard_quick_press', 'dashboard', 'side');      // クイックドラフト
-        remove_meta_box('dashboard_primary', 'dashboard', 'side');          // WordPressイベントとニュース
-        // remove_action('welcome_panel', 'wp_welcome_panel');                 // ようこそパネル
+    if (!$this->opts['helth']) {
+      remove_meta_box('dashboard_site_health', 'dashboard', 'normal');
     }
-
-    /**
-     * 更新通知を削除
-     */
-    public function hide_update_notice_for_editor()
-    {
-        remove_action('admin_notices', 'update_nag', 3);
-        remove_action('network_admin_notices', 'update_nag', 3);
+    if (!$this->opts['activity']) {
+      remove_meta_box('dashboard_activity', 'dashboard', 'normal');
     }
-
-    /**
-     * 上部管理バーからコメントと新規追加を削除
-     */
-    public function customize_admin_bar_for_limited_users($wp_admin_bar)
-    {
-        $wp_admin_bar->remove_node('wp-logo');       // WordPressロゴ
-        $wp_admin_bar->remove_node('comments');      // コメント
-        $wp_admin_bar->remove_node('new-content');   // 新規追加
+    if (!$this->opts['quick_press']) {
+      remove_meta_box('dashboard_quick_press', 'dashboard', 'side');
     }
+    if (!$this->opts['primary']) {
+      remove_meta_box('dashboard_primary', 'dashboard', 'side');
+    }
+    if (!$this->opts['panel']) {
+      remove_action('welcome_panel', 'wp_welcome_panel');
+    }
+    if (!$this->opts['right_now']) {
+      remove_meta_box('dashboard_right_now', 'dashboard', 'normal');
+    }
+  }
+
+  /**
+   * 更新通知の制御
+   */
+  public function hideUpdateNoticeForEditor()
+  {
+    if (!$this->opts['notices']) {
+      remove_action('admin_notices', 'update_nag', 3);
+      remove_action('network_admin_notices', 'update_nag', 3);
+    }
+  }
+
+  /**
+   * 管理バーの表示制御
+   */
+  public function customizeAdminBarForLimitedUsers($wp_admin_bar)
+  {
+    if (!$this->opts['new-content']) {
+      $wp_admin_bar->remove_node('wp-logo');
+      $wp_admin_bar->remove_node('comments');
+      $wp_admin_bar->remove_node('new-content');
+    }
+  }
 }

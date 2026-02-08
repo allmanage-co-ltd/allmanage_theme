@@ -1,155 +1,152 @@
-# オルマネテンプレートテーマ
+# Allmanageテーマ
 
-色々なサイトで作成した機能をひとまとめにしたテーマです。
-不要なファイルや不要な記述を整理していきたいと思います。
+従来の既存テーマの古い記述や、グローバル関数をひっかきまわす構成を一新して、新たにオブジェクト指向の「クラス」と型定義を取り入れソースが肥えてきたとしてもある程度の管理コストで理解できる塩梅を目指しています。
 
-## 必須ルール
+**作成中**
 
-1. **案件ごとに新しく git から clone もしくは zip を落として使用してください。**
-2. 明確な命名規則やコーディングルールはありませんが、よしなに合わせてください。
-3. 不要なソースコードは含めず必要に応じてカスタマイズしてください。
-4. ディレクトリ構造の変更は行わないようにお願いいたします。
-5. Composer 等は無視で構いませんが積極的に使用してください。
+## 方針
 
-## 必須プラグイン
+- 何がどこにあるかわからない煩雑なテーマを辞める
+- WordPress標準の何でもfunctions.phpに書くことを辞める
+- functions.phpにはロジックを書かずに実装を他へ逃がして簡潔にする
+- クラスを取り入れてテーマの肥大化に対応することでテーマを資産とする
+- ロジックには型定義を積極的に書くことで視覚的負担を減らす
+- 古い書き方を辞めてモダンな書き方に触れることでLaravelにもスイッチしやすくする
 
-1. `WPvivid Backup Plugin`
-   バックアップ・データ移行
+## コーディングについて
+### **日々更新していきますので、必ず、案件ごとに新しく git clone もしくは zip を落として使用してください。**
 
-2. `Advanced Custom Fields Pro`
-   各種カスタムフィールド・オプションページ
-   `\\IODATA-35a52a\disk1\【顧客情報】\■Allmanage自社関連情報\●各種サービス・システム関係\Advanced Custom Fields Pro（ACF）`
+1. 基本的には`views` `config` `assets` `app/functions.php` だけを見ればコーディング作業ができるように作っていますので、一番最初はこれらのディレクトリをチェックしてください。
 
-3. `XML Sitemap Generator for Google`
-   サイトマップ生成
+2. WordPress標準ではテーマ直下にファイルが散らばりますが、それらをすべて`views`ディレクトリに逃がしていますので、テーマ直下を触る必要はありません。
 
-4. `Website LLMs.txt`
-   AIO 対策のため導入
+3. CSSやJSの登録、カスタム投稿・タクソノミーの作成、ページURLの設定は`config`ディレクトリを編集してください。その設定ファイルをもとに`app`ディレクトリの中でロジックを組んでいます。
 
-## ディレクトリ構成
+2. アドバイスや改善点は積極的に提案し、より良いテーマにしたいです。
 
-```
-.
-├── .php-cs-fixer.dist.php   # php-cs-fixerの設定管理ファイル
-├── .phpstan.neon            # phpstanの設定管理ファイル
-├── composer.json            # composerの設定管理ファイル
-├── .vscode/                 # VSCode設定
-│   └── settings.json        # インデント等の共通ルール
-│
-├── config/                  # 案件ごとに変わる設定等
-│
-├── dashboard/               # 管理画面に関連するフック等
-│
-├── func/                    # テーマの独自関数
-│
-├── img/                     # 画像ファイル管理
-│
-├── js/                      # スクリプトファイル管理
-│
-├── style/                   # スタイルファイル管理
-│   ├── css/                 # コンパイル後のCSSファイル
-│   └── scss/                # SCSSソースファイル
-│
-└── view/                    # テンプレートファイル
-   ├── parts/                # 共通コンポーネント
-   │   └── ...               # ヘッダー、フッター等の共通パーツ
-   │
-   ├── page/                 # 固定ページテンプレート
-   │   └── *.php             # スラッグに応じたテンプレート
-   │                         # 例: page/recruit.index.php → /recruit
-   │                         # 例: page/recruit.php → /recruit
-   │
-   ├── single/               # 投稿詳細テンプレート
-   │   └── *.php             # カスタム投稿タイプに応じた詳細テンプレート
-   │
-   ├── taxonomy/             # タクソノミーアーカイブテンプレート
-   │   └── *.php             # タクソノミーに応じたテンプレート
-   │
-   └── archive/              # アーカイブテンプレート
-       └── *.php             # カスタム投稿タイプのアーカイブテンプレート
+## 動作環境について
+
+モダンPHPで構成されていますので、本番、テストに関わらず、テーマを動かすには`Conposer`環境が**必須**です。
+未インストールの場合は下記を参考にインストールしてください。
+[https://kinsta.com/jp/blog/install-composer/](https://kinsta.com/jp/blog/install-composer/)
+
+```sh
+# conposerインストール後にテーマ直下のディレクトリで
+# シェルで書きコマンドを叩き依存関係をインストールします。
+# 問題なくインストールできればテーマが稼働します。
+cd allmanage_theme
+composer install
 ```
 
-## セットアップ
+## Sassについて
 
-- ### Conposer
+基本は vscode プラグインのLive Sass Compailerを使用します。
 
-  php のパッケージマネージャ`composer`のインストールが必要です。
+コンパイルのルール（入出力先）などは`./.vscode/settings.json`に記載してあるのでそのままコンパイルしていただければ問題ありません。
 
-  未インストールの場合は下記を参考にインストールしてください。
+## 必須プラグインについて
+1. `WPvivid Backup Plugin` バックアップ・データ移行
 
-  https://kinsta.com/jp/blog/install-composer/
+2. `Advanced Custom Fields Pro` 各種カスタムフィールド・オプションページ `\\IODATA-35a52a\disk1\【顧客情報】\■Allmanage自社関連情報\●各種サービス・システム関係\Advanced Custom Fields Pro（ACF）`
 
-  ```sh
-  # conposerインストール後にカレントディレクトリで
-  # プロジェクトの依存関係をインストールします。
-  composer install
-  ```
+3. `XML Sitemap Generator for Google` サイトマップ生成
 
-  `conposer`には npm 同様のコマンド登録機能があります。
+4. `Website LLMs.txt` AIO 対策のため導入
 
-  ```json
-  {
-    "scripts": {
-      "cs": "php-cs-fixer fix --dry-run --diff",
-      "cs:fix": "php-cs-fixer fix",
-      "analyse": "phpstan analyse"
-    }
-  }
-  ```
-
-- ### Sass
-
-  基本は vscode プラグインの`Live Sass Compailer`を使用します。
-
-  コンパイルルール（入出力先）などは`./.vscode/settings.json`に記載してあるのでそのままコンパイルしていただければ問題ありません。
+5. `mw wp form` お問い合わせフォーム作成
 
 ---
 
-## コード品質管理
+## 起動
 
-### Rector
+テーマ読み込み時に `App\Bootstrap\App` が起動され
+各 Hook / Admin / Plugin クラスの `boot()` が呼ばれることで初期化される
 
-1. Rector
-   PHP のバージョンアップに伴うソースの修正対応をある程度自動化できます。
-   [参考](https://zenn.dev/m01tyan/articles/3fcf6b59fba070)
-
-```sh
-composer rector     # 自動修正点の確認のみ
-composer rector:fix # 自動修正を実行
 ```
-
-### Formatter
-
-1. 独自ルール（`./.vscode/settings.json`で 2 スぺインデントを強制）
-   vscode での設定と PHP CS Fixer フォーマットが若干かみ合わずに毎回微修正されます。。。。
-2. PHP CS Fixer
-   [参考](https://qiita.com/suin/items/4242aec018d086312fe7)
-
-```sh
-composer cs     # フォーマットチェックのみ
-composer cs:fix # フォーマットを自動修正する
-```
-
-### Linter
-
-1. PHPStan
-   [参考](https://www.divx.co.jp/media/172)
-
-```sh
-composer analyse
+functions.php
+ └─ App\Bootstrap\App::boot()
 ```
 
 ---
 
-## CI / CD
+## View構成
 
-- CI（継続的インテグレーション）
+```
+views/
+├─ page/
+├─ single/
+├─ archive/
+├─ taxonomy/
+├─ component/
+└─ layout/
+└─ admin/
+```
 
-  - Trigger: staging ブランチへのプルリクエスト
-  - Action: PHP CS Fixer, PHPStan の実行及びレポート作成
+- テンプレート階層は App\Services\Render で解決
+- WordPress標準テンプレート階層（テーマ直下）は一切使わない
 
-- CD（継続的デプロイメント）
-  - Trigger: staging ブランチへのプルリクエスト
-  - Action: 本番環境へ SSH 接続し`git pull`を実行
+---
+
+## アプリケーション構成
+
+```
+app/
+├─ Bootstrap/      アプリ起動
+├─ Hooks/          フロント・WPフック
+├─ Admin/          管理画面拡張
+├─ Plugins/        プラグイン連携
+├─ Services/       共通サービス
+└─ Services/UI/    表示用ロジック
+```
+---
+
+### Service クラス
+
+```
+App\Services\*
+```
+
+- Viewに書きたくないロジックをここに逃がす
+- functions.phpを通してViewとの懸け橋になる
+
+---
+
+### Hook クラス
+
+```
+App\Hooks\*
+```
+
+- add_action
+- add_filter
+- enqueue
+- shortcode
+- seo
+- theme setup
+
+---
+
+### Admin クラス
+
+```
+App\Admin\*
+```
+
+- 投稿タイプ登録
+- タクソノミー登録
+- 管理画面UI制御
+- オプションページ
+
+---
+
+### Plugin クラス
+
+```
+App\Plugins\*
+```
+
+- class_exists チェック必須
+- プラグイン未導入でもエラーにしない
+- WPに依存した拡張のみを書く
 
 ---
